@@ -1,0 +1,262 @@
+# Homework 1: Bounds of Option Valuation
+
+**Homework Due:** Monday, September 16 at 10 am.
+
+# Lab Steps to Complete
+
+You are encouraged to help each other complete the lab steps.
+
+## Prepare Your HW1 Directory
+
+```sh
+cd csci2041
+git clone git@github.umn.edu:umn-csci-2041-f19/hw1.git
+cd hw1
+./setup
+```
+
+Please follow the instructions to fix any error or warning.
+
+## Let's Discuss Null Pointers
+
+### Options
+
+A wildly used type constructor in OCaml is _option types_.
+It is written as `a option` for some type `a`, such as `bool option` or `int option`.
+Like any other type, we can wholly and systematically describe a type constructor by the following:
+
+1. **When it is a type:** `a option` is a type for any type `a`.
+2. **How to create an element:**
+   `Some u` is of type `a option` for any expression `u` of type `a`,
+   and `None` is also of type `a option`. These are all the canonical ways!
+3. **How to evaluate an element:**
+   For `Some u`, evaluate `u` to get its result `v`, and then we say `Some v` is the result of `Some u`.
+   As for `None`, it is the result of the computation by itself.
+   We call these possible results the _values_ of the option type.
+   For example, a value of type `bool option` is either `Some true`, `Some false`, or `None`.
+4. **How to use an element:** Pattern-matching!
+   ```ocaml
+   match u with
+     Some x -> ...
+   | None -> ...
+   ```
+5. **What would happen when we use a value:**
+   Follow the usual pattern-matching semantics.
+
+### Null Pointers
+
+Often, the value `None` in type `a option` represents "no value" or "undefined," as an extra value in addition to
+what is already in the type `a` (through `Some`).
+Having such a default value is convenient or even critical in many applications, but in many popular programming languages, there is no proper support of option types. Therefore, programmers usually turn to things like `NULL` in C/C++, `null` in Java, or `None` in Python. The design flaws in these languages, as we will see, make it easy to forget checking nullness and lead to lots of bugs, which the original introducer summarized as a [billion-dollar mistake](https://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare/).
+
+The issue, however, is not that null pointers themselves are causing trouble. The core issue is that many popular languages do not distinguish the types `a` and `a option` and allow programmers to use a value of the latter as one of the former. In a more civilized language such as OCaml, such error is difficult to make.
+
+### Exercise 1.1
+Get some post-it notes from TAs. Write down the bugs you know (either by you or by others) which were caused by forgetting to check "null pointers", "None" or "null references." Please keep things anonymous. Put your notes on the whiteboard. (They will stay there for the entire afternoon, and we will take a picture at the end of the last lab!)
+
+### Exercise 1.2
+Look at the above pattern matching (in **"How to use an element"**). If `None` approximates the concept "null pointer," why is it difficult or even impossible to forget checking nullness in OCaml? Feel free to share your answer with your neighbors in the lab. (Remember our mouth-covering protocol---please respect others' choices not to participate.) You can also discuss your answer on Piazza.
+
+### Exercise 1.3
+Suppose we carefully inserted checking code in other programming languages whenever a reference could have been null. The worry is that such excessive checking will reduce efficiency. What else can you do in OCaml to remain correct while being efficient? Feel free to discuss your ideas with neighbors or on Piazza. Once you feel you know an answer, please briefly write down your reflection upon these exercises (if any) in [hw1.mkd](hw1.mkd).
+
+## XOR Writing Contest
+
+Here is the calculation of the _exclusive or (XOR)_:
+
+```ocaml
+let x : bool = ...
+let y : bool = ...
+let x_xor_y : bool =
+  match (x, y) with
+    (true, false) -> false
+  | (false, true) -> false
+  | _ -> true
+```
+
+### Exercise 2
+How many (interesting) alternative implementations of `x_xor_y` can you find? (Hint: you do not have to handle both expressions at once.) Feel free to discuss your ideas with your neighbors or on Piazza.
+
+## Set Up Your Editor (Optional)
+
+If you use one of the powerful editors (Atom, Vim, Emacs, VS Code, ...),
+do the following to integrate the powerful `merlin` for real-time feedback
+so that your editor can be as cool as Favonia's.
+First of all, if you never used OPAM (OCaml Package Manager) before, run
+
+```
+opam init --auto-setup
+```
+
+This command might take some time on CSE machines (probably because of the Network File System).
+Please be patient and set up your shell environment as instructed.
+Once it is done, try the following:
+
+```
+opam install merlin
+```
+If OPAM complaints about `ocamlbuild` already being installed, execute:
+```
+CHECK_IF_PREINSTALLED=false opam install ocamlbuild
+opam install merlin
+```
+
+Now you have `merlin` ready. Choose the next step based on your editor:
+
+* Atom: Install packages `language-ocaml` and `ocaml-merlin`. Also check out [Thu's Piazza post on Atom](https://piazza.com/class/jz8ps35it9b7ca?cid=30)!
+* Emacs: Follow [Zhuyang's Piazza post on Emacs](https://piazza.com/class/jz8ps35it9b7ca?cid=20)!
+* Vim: Run `opam user-setup install` and follow the instruction. Also check out [Ashmita's Piazza post on Vim](https://piazza.com/class/jz8ps35it9b7ca?cid=31)!
+* Visual Studio Code: Install the `vscode-reasonml` extension.
+
+If your editor is powerful but not one of them, such as Acme or Sublime Text,
+chances are OCaml is partially integrated.
+You can still use them or any other editor to finish the homework, but you are on your own. (Sorry!)
+All TAs in the labs are experienced in either Atom or Vim.
+
+**This concludes the lab part of Homework 1. You should not discuss your solutions to the questions below this line.**
+
+# Take-Home Portion
+
+**Note that sharing or discussing solutions is forbidden (as usual) for this part.
+If you are doing this part in the lab, be sure not to show your screen to others.**
+
+**Grading:**
+You collect points in two buckets: 1B (Goal 1 - Basic) and 1A (Goal 1 - Advanced).
+See the updated Piazza post about the conversion from points to grades.
+Points are not distributed according to difficulty,
+and thus you probably want to do "easier" exercises first.
+Advanced exercises (the ones involving 1A) are marked with a star.
+
+**Note:**
+Written assignments should be done in [hw1.mkd](hw1.mkd), and code should go into [hw1.ml](hw1.ml).
+
+## Bindings
+
+Let's review the semantics of bindings. As a reminder, consider the following declaration:
+```ocaml
+let x = 1 + 1
+```
+The variable `x` is bound to the value `2`, not the expression `1 + 1`, in OCaml.
+Different programming languages have their own choices but
+in OCaml we always bind a variable to the result of the computation.
+
+Please write your solutions to the following exercises in [hw1.mkd](hw1.mkd).
+
+### Exercise 3.1 [1B 10pts]
+```ocaml
+let x = true
+let y = (x, 1)
+```
+List all the visible bindings at the end of the program.
+
+### Exercise 3.2 [1B 10pts]
+```ocaml
+let x = 5
+let y = x
+let z = (x + 2, y)
+```
+List all the visible bindings at the end of the program.
+
+### \*Exercise 3.3 [1A 5pts + bonus 1B 1pt]
+```ocaml
+let x = 3
+let y = true
+let x = x
+```
+List all the visible bindings at the end of the program.
+
+### \*Exercise 3.4 [1A 5pts + bonus 1B 1pt]
+```ocaml
+type a = int
+let x = 2
+```
+List all the visible bindings at the end of the program. **Moreover,** does `x` have type `a` at the end?
+
+### \*Exercise 3.5 [1A 10pts + bonus 1B 3pts]
+```ocaml
+type a = int
+type b = unit
+let x = ()
+let y = 100
+let x = (y, true)
+type a = b * bool
+```
+List all the visible bindings at the end of the program. **Moreover,** does `x` have type `a` at the end?
+
+## Local Bindings
+
+So far, all bindings are at the top-level, which will remain visible until the end of the program (unless shadowed by other bindings). However, sometimes we wish to hide helper functions and intermediate results after the main computation is done. This can be done by local bindings, whose _scopes_ are delimited. The general syntax is
+```ocaml
+let x = u in v
+```
+where the binding of `x` to the result of `u` is only visible within the expression `v`.
+
+Please write your solutions to the following exercises in [hw1.mkd](hw1.mkd).
+
+### Exercise 4.1 [1B 10pts]
+What is the value (the computation result) of the following expression?
+```ocaml
+let x = 1 in let y = 2 in (x, x + y)
+```
+
+### \*Exercise 4.2 [1A 5pts + bonus 1B 1pt]
+What is the value (the computation result) of the following expression?
+```ocaml
+let x = 1 in let x = 2 in x
+```
+
+### \*Exercise 4.3 [1A 5pts + bonus 1B 1pt]
+What is the value (the computation result) of the following expression?
+```ocaml
+let x = 2 - (let x = 2 in x + 2) in x * 2
+```
+
+## Fun with Options
+
+**Functions will be covered on 2019/9/11 (Wed).**
+
+Option types are frequently used to describe results that may not be available. A function which takes an input of type `a` and can often give an output of type `b` (but not always) may declare itself to be of type `a -> b option`, returning `None` when the output of type `b` is not available. Such functions include, for example, "getting the first element of the list" which would not work if the list is empty.
+
+Please complete the programming exercises in [hw1.ml](hw1.ml).
+
+### Exercise 5.1 [1B 15pts]
+
+As a principle of software engineering, we prefer building a large program from smaller pieces. One common operation is to compose two possibly failing functions into one function that fails when one of them fails. That is, we want to have a function `compose_option` of type
+```ocaml
+(int -> int option) -> (int -> int option) -> (int -> int option)
+```
+which satisfies various equations. The most important equation is that, if we have two functions that always deliver results, `compose_option` behaves like the regular function composition except for the additional `Some`. That is, for any two functions `f` and `g` of type `int -> int` and any input `i` of type `int`,
+```ocaml
+compose_option (fun x -> Some (f x)) (fun x -> Some (g x)) i
+```
+will give the same result as
+```ocaml
+Some (f (g i))
+```
+(One can prove that this equation "almost" fully describes the behavior of `compose_option`, using some powerful tool that I plan to explain after the Thanksgiving.) Please use what we have learned in class to implement the function
+```ocaml
+let compose_option : (int -> int option) -> (int -> int option) -> (int -> int option)
+  = ...
+```
+which expectedly compose two possibly failing functions.
+
+### Exercise 5.2 [1B 10pts]
+
+Another common situation is when we have been using option types "too much" so that we are stuck in layers of option types. Please prepare a function to rescue yourself that will collapse `Some (Some i)` into `Some i` and all the rest into `None`:
+
+```ocaml
+let join_option : int option option -> int option
+  = ...
+```
+
+### Additional Notes on Grading and Coding Style
+
+You are forbidden to use any function from the OCaml standard library. You have learned enough syntax from the lectures and this homework to implement these two functions from scratch. However, you can implement helper functions or define other values in [hw1.ml](hw1.ml). We do not care about those auxiliary declarations, as long as by the end of your program the names `compose_option` and `join_option` point to the correct functions.
+
+The correctness of your functions is the ultimate criterion. Points are assigned based on the (secret) test cases your solution has passed. (There will be some tests to check your submission automatically, but we might use a different set of test cases for grading.)
+
+We will not check your coding style this time. However, we will have lab exercises (currently planned on 10/1) where you and your partners share code and work together to improve its quality. Please try your best to write clean, elegant code.
+
+## Due
+
+**Homework Due:** Monday, September 16 at 10 am.

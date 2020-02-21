@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ORGANIZATION=umn-csci-2041-f19
+HOMEWORK_NUMBER=1
+HOOK_REPOSITORY="git@github.umn.edu:${ORGANIZATION}/hw${HOMEWORK_NUMBER}-scripts.git"
+
+HOOK_DIR=./.csci2041hooks
+
+if [ ! -d "${HOOK_DIR}" ]; then
+  if ! git clone --quiet "${HOOK_REPOSITORY}" "${HOOK_DIR}"; then
+    echo
+    echo "I am not able to download the Homework ${HOMEWORK_NUMBER} scripts through Git and SSH."
+    echo "Do you have your SSH key installed, and stay connected to the Internet?"
+    echo "Please redo the steps at https://github.umn.edu/umn-csci-2041-f19/hw0#configure-ssh"
+    echo "if you think you have not set up the SSH key authentication yet."
+    echo
+    exit 1
+  fi
+fi
+
+cd "${HOOK_DIR}"
+git pull --quiet
+./setup
