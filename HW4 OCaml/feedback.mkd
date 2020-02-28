@@ -1,0 +1,9 @@
+## Lab/Course Info
+* late days remaining: 5
+## Feedback
+* Please download [feedback.pdf](feedback.pdf) and see the annotations for feedback
+## Exercise 3.1: (2B: 30/30 points)
+## Exercise 3.2: (2B: 30/30 points)
+## Exercise 3.3.1: (2B: 6/0 points, 2A: 20/20 points)
+## Exercise 3.3.2: (2B: 3/0 points, 2A: 10/10 points)
+## Total (2B: 69/60 points, 2A: 30/30 points)
