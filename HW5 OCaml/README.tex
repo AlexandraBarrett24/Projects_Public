@@ -1,0 +1,270 @@
+\documentclass[fleqn]{article}
+\usepackage[margin=.8in]{geometry}
+\usepackage{parskip}
+\usepackage{newpxtext}
+\usepackage{newpxmath}
+\usepackage{xparse}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{adjustbox}
+\usepackage{varwidth}
+\usepackage{fvextra}
+\usepackage{hyperref}
+
+\NewDocumentCommand{\markcode}{m}{\adjustbox{margin=1.5pt 3pt,bgcolor=lightgray!20}{#1}}
+\NewDocumentCommand{\ocaml}{m}{\markcode{\upshape\Verb[mathescape,commandchars=\\\{\}]{#1}}}
+\NewDocumentCommand{\shell}{m}{\upshape\Verb{#1}}
+\DefineVerbatimEnvironment{ocamlcode}{Verbatim}{frame=single,rulecolor=gray}
+\DefineVerbatimEnvironment{shellcode}{Verbatim}{frame=single,rulecolor=gray}
+
+\NewDocumentCommand{\numeral}{m}{\ensuremath{\overline{#1}}}
+\NewDocumentCommand{\ocamlsem}{m}{\ensuremath{\bbrackets{\ocaml{#1}}}}
+
+\NewDocumentCommand{\integers}{}{\vvmathbb{Z}}
+\NewDocumentCommand{\naturalnumbers}{}{\vvmathbb{N}}
+
+\NewDocumentEnvironment{proof}{O{Proof:}}{\noindent\textbf{#1}}{\hfill$\square$}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}{Definition}
+
+\NewDocumentCommand\NewPairedDelimiter{mmmm}{
+  \NewDocumentCommand#2{mmm}{
+    \IfNoValueTF{##2}
+      {\IfBooleanTF{##1}
+        {\mleft#3##3\mright#4}
+        {#3##3#4}}
+      {\mathopen{##2#3}##3\mathclose{##2#4}}
+  }
+  \NewDocumentCommand#1{som}{#2{##1}{##2}{##3}}
+}
+\NewPairedDelimiter{\braces}{\rawbraces}{\{}{\}}
+\NewPairedDelimiter{\parens}{\rawparens}{(}{)}
+\NewPairedDelimiter{\angles}{\rawangles}{\langle}{\rangle}
+\NewPairedDelimiter{\brackets}{\rawbrackets}{[}{]}
+\NewPairedDelimiter{\verts}{\rawverts}{\lvert}{\rvert}
+\NewPairedDelimiter{\Verts}{\rawVerts}{\lVert}{\rVert}
+\NewPairedDelimiter{\bbrackets}{\rawbbrackets}{\llbracket}{\rrbracket}
+
+\NewDocumentCommand\NewTripleDelimiter{mmmmm}{%
+  \NewDocumentCommand#2{mmmm}{%
+    \IfNoValueTF{##2}
+      {\IfBooleanTF{##1}
+        {\mleft#3##3\middle#4##4\mright#5}
+        {#3##3#4##4#5}}
+      {\mathopen{##2#3}##3{##2#4}##4\mathclose{##2#5}}%
+  }
+  \NewDocumentCommand#1{somm}{#2{##1}{##2}{##3}{##4}}
+}
+\NewTripleDelimiter{\mysubset}{\rawmysubset}{\{}{\mid}{\}}
+
+\title{Homework 5: Patterns in Trees}
+\author{}\date{}
+\begin{document}
+
+\NewDocumentCommand{\allless}{mg}{\text{\upshape\textsc{AllLess}}\parens{\ocaml{#1},\IfValueTF{#2}{\ocaml{#2}}{-}}}
+\NewDocumentCommand{\allgreater}{mg}{\text{\upshape\textsc{AllGreater}}\parens{\ocaml{#1},\IfValueTF{#2}{\ocaml{#2}}{-}}}
+\NewDocumentCommand{\member}{mg}{\text{\upshape\textsc{Member}}\parens{\ocaml{#1},\IfValueTF{#2}{\ocaml{#2}}{-}}}
+\NewDocumentCommand{\bst}{g}{\text{\upshape\textsc{BST}}\parens{\IfValueTF{#1}{\ocaml{#1}}{-}}}
+
+\maketitle
+
+\textbf{Homework Due:} Monday, October 21 at 10 am.
+
+The goal for Homework 5 is to program with data types and prove some theorems about binary search trees.
+
+\section{Lab Steps to Complete}
+
+As usual, you are encouraged to help each other to finish the lab part.
+
+\subsection*{Prepare Your HW5 Directory}
+
+\begin{shellcode}
+cd ~/csci2041
+git clone git@github.umn.edu:umn-csci-2041-f19/hw5.git
+cd hw5
+./setup
+\end{shellcode}
+
+\begin{enumerate}
+\item
+  \textbf{Run \shell{./setup} every time you clone it.} Please follow the
+  instructions to fix any error or warning.
+\item
+  \textbf{Do NOT edit files on GitHub directly.} I need to call the IT
+  if you accidentally reveal your homework.
+\end{enumerate}
+
+\subsection*{Exercise 1 [Not Graded]}
+
+The first part is to implement a simple type checker for OCaml patterns. We are going to define data types \ocaml{type\_}, \ocaml{value}, and \ocaml{pattern} to represent the types, values, and patterns in (a small fragment of) OCaml. Here are some examples:
+\begin{itemize}
+  \item The integer type \ocaml{int} will be represented as \ocaml{TInt} of type \ocaml{type\_}.
+  \item The tuple type \ocaml{int option * bool} will be represented as \ocaml{TTuple [TOption TInt; TBool]} of type \ocaml{type\_}.
+  \item The type of lists of nullary tuples \ocaml{unit list} will be represented as \ocaml{TList (TTuple [])} of type \ocaml{type\_}.
+  \item The integral value \ocaml{1} will be represented as \ocaml{VNum 1} of type \ocaml{value}.
+  \item The nullary tuple \ocaml{()} will be represented as \ocaml{VTuple []} of type \ocaml{value}.
+  \item The wildcard pattern \ocaml{\_} will be represented as \ocaml{PWildcard} of type \ocaml{pattern}.
+  \item The variable pattern \ocaml{x} will be represented as \ocaml{PVar "x"} of type \ocaml{pattern}..
+  \item The tuple pattern \ocaml{(true, y, z)} will be represented as \ocaml{PTuple [PTrue; PVar "y"; PVar "z"]} of type \ocaml{pattern}..
+  \item The list pattern \ocaml{1 :: []} will be represented as \ocaml{PCons (PNum 1, PNil)} of type \ocaml{pattern}..
+\end{itemize}
+Check the code in \shell{hw5.ml} for the full definitons of \ocaml{type\_}, \ocaml{value}, and \ocaml{pattern}. Study the functions \ocaml{all2} and \ocaml{check\_value}, and then implement a function \ocaml{check\_pattern} that checks whether a pattern makes sense for a type. Here are some simple test cases:
+
+\begin{ocamlcode}
+check_pattern TBool PWildcard = true
+(* the wildcard pattern works for any type *)
+
+check_pattern (TTuple []) (PVar "x") = true
+(* the variable pattern works for any type, too! *)
+
+check_pattern TBool (PTuple []) = false
+(* the pattern `()` does not work for `bool` *)
+
+check_pattern (TOption TBool) (PSome 100) = false
+(* the pattern `Some 100` does not work for `bool option` *)
+\end{ocamlcode}
+
+\subsection*{Exercise 2 [Not Graded]}
+
+In the lecture, Favonia showed a basic property of \ocaml{insert}: it will give you back a binary search tree. In this exercise, we are going to prove a basic property about another function, \ocaml{member}. Here is the code:
+\begin{ocamlcode}
+let rec member : int -> int tree -> bool
+  = fun x -> fun t ->
+    match t with
+    | Leaf -> false
+    | Branch (l, k, r) ->
+      match compare_int x k with
+      | Equal -> true
+      | Less -> member x l
+      | Greater -> member x r
+\end{ocamlcode}
+We want to say \ocaml{member} never gives false positives. Here is the mathematical criterion of truthness:
+\begin{definition}[membership]
+  For any value \ocaml{x} of type \ocaml{int},
+  the predicate $\member{x}$ on values of type \ocaml{int tree} is defined inductively as follows:
+  \begin{itemize}
+    \item $\member{x}{Leaf}$: false.
+    \item $\member{x}{Branch (l, k, r)}$: $\member{x}{l}$ or $\ocamlsem{x} = \ocamlsem{k}$ or $\member{x}{r}$.
+  \end{itemize}
+  $\member{x}{e}$ on expressions \ocaml{e} is defined to be $\member{x}{v}$ where \ocaml{v} is the value of \ocaml{e}.
+\end{definition}
+
+Please prove the following theorem:
+\begin{theorem}
+  For any value \ocaml{x} of type \ocaml{int} and any value \ocaml{t} of type \ocaml{int tree},
+  if $\ocaml{member x t} = \ocaml{true}$ then $\member{x}{t}$.
+\end{theorem}
+
+Hints: If there's another layer of pattern-matching, the standard approach is to start another layer of induction.
+
+\textbf{This concludes the lab part of Homework 3.}
+
+\section{Take-Home Portion}
+
+\paragraph{Your code for Exercise 3.} The code should go into \shell{hw5.ml}. You \emph{can} use functions from the OCaml standard library, as long as they are available in \textbf{OCaml 4.05.0}, and you are using them correctly. However, due to the incompatibility between different versions of OCaml, it is recommended to implement your own helper functions if you are not working on a CSE machine or VOLE. We do not care about those auxiliary declarations, as long as by the end of your program, the names designated in the exercises point to the correct functions.
+
+\paragraph{Your proofs for Exercise 4.} You need to typeset or scan your solution to Exercise 4 as one single file \shell{hw5.pdf} in the homework repository, and submit it through \shell{git push}. It is encouraged to use professional typesetting software such as \LaTeX{} and you can reuse the code in \shell{README.tex} for your work. Otherwise, your hand-writing must be clear and legible, and it must be scanned and committed as one PDF named \shell{hw5.pdf}.
+
+\paragraph{Scheduled network down time.}
+There is a scheduled network maintenance in Keller Hall during 6am--8am starting October 21, 2019, which is several hours before the deadline. Please plan accordingly. It is not a valid basis for a deadline extension.
+
+\subsection*{Exercise 3 [2B 30pts]}
+
+Implement a function named \ocaml{match\_value} of type \ocaml{pattern -> value -> (string * value) list option}.
+The expression
+\begin{ocamlcode}
+match_value p v
+\end{ocamlcode}
+should return the list of variable bindings induced by matching the value \ocaml{v} against the pattern \ocaml{p}. A binding is a pair of the variable name and the value that the variable is bound to. If the matching successes, the function should return \ocaml{Some l} where \ocaml{l} is a list of bindings. Otherwise, if the matching fails, the function should return \ocaml{None}. You may assume the value representation \ocaml{v} and the pattern representation \ocaml{p} are of the same type. (See the lab exercise.) You may also assume there are no duplicate variable patterns inside \ocaml{p}. The order of bindings does not matter; any permutation is correct. However, there should not have duplicate bindings. Here are some simple test cases:
+
+\begin{ocamlcode}
+match_value PWildcard (VNum 1) = Some []
+(* the wildcard pattern does not induce any binding *)
+
+match_value (PVar "x") VTrue = Some [("x", VTrue)]
+(* the variable pattern induces a binding *)
+
+match_value (PTuple [PVar "x"; PVar "y"]) (VTuple [VNum 1; VTrue])
+  = Some [("x", VNum 1); ("y", VTrue)]
+
+match_value (PSome (PTuple [])) VNone = None
+\end{ocamlcode}
+
+The auto-checker will be enabled after 9 pm today (October 15).
+
+Hints: There is an interesting function in \shell{hw5.ml}.
+
+\subsection*{Exercise 4.1 [2B 30pts]}
+
+\begin{ocamlcode}
+(* renamed from `max_tree` to `max` in Homework 5 to reduce your typing *)
+let rec max : 'a . 'a tree -> 'a option
+  = fun t ->
+    match t with
+    | Leaf -> None
+    | Branch (_, k, r) ->
+      match max r with
+      | Some m -> Some m
+      | None -> Some k
+\end{ocamlcode}
+
+Prove this theorem:
+
+\begin{theorem}
+  For any value \ocaml{x} of type \ocaml{int} and any value \ocaml{t} of type \ocaml{int tree} such that $\bst{t}$,
+  if $\ocaml{max x t} = \ocaml{Some m}$ then $\member{m}{t}$.
+\end{theorem}
+
+Hints: Do the lab exercise first!
+
+\subsection*{Exercise 4.2 [2A 30pts, bonus 2B 10pts]}
+
+\begin{ocamlcode}
+(* This is yet another version of `delete` that was not covered in the lecture.
+ * It avoids the impossible case in the longer version and the potential inefficacy
+ * in the shorter version. It turns out to be one of the easiest variants to finish
+ * the proof, too. *)
+
+let rec delete : int -> int tree -> int tree
+  = fun x -> fun t ->
+    match t with
+    | Leaf -> Leaf
+    | Branch (l, k, r) ->
+      match compare_int x k with
+      | Less -> Branch (delete x l, k, r)
+      | Greater -> Branch (l, k, delete x r)
+      | Equal ->
+        match r with
+        | Leaf -> l
+        | _ ->
+          match max l with
+          | Some m -> Branch (delete m l, m, r)
+          | None -> r (* l = Leaf *)
+\end{ocamlcode}
+
+Prove the following theorem, which is an important step toward the full correctness of \ocaml{delete}.
+\begin{theorem}
+  For any value \ocaml{x} of type \ocaml{int} and any value \ocaml{t} of type \ocaml{int tree} such that $\bst{t}$,
+  the following two statements hold:
+  \begin{itemize}
+    \item If $\ocaml{max x t} = \ocaml{Some m}$, then $\allless{m}{delete m t}$.
+    \item If $\ocaml{max x t} = \ocaml{None}$, then $\ocaml{t} = \ocaml{Leaf}$.
+  \end{itemize}
+\end{theorem}
+
+Hints: Follow the code of \ocaml{max}, and use the information you collect to run the code of \ocaml{delete}. Review the notes if you are unsure how to work with the predicates $\allless{i}$ and $\allgreater{i}$.
+
+\section*{Anonymous Feedback}
+
+We are collecting \href{https://z.umn.edu/csci2041feedback}{anonymous feedback} throughout the semester.
+
+\subsection*{Due}
+
+\textbf{Homework Due:} Monday, October 21 at 10 am.
+
+\end{document}

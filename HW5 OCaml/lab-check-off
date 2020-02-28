@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ ! -d .csci2041hooks ]; then
+  echo "You did not set up the repository through ./setup. Aborting..."
+  exit 1
+fi
+
+cd .csci2041hooks
+git pull --quiet
+./lab-check-off
+

@@ -1,0 +1,15 @@
+## Lab/Course Info
+* late days remaining: 5
+## Exercise 3 (2B: 29/30 points)
+### Automated Grading: 29/30
+* `match_value (PTuple [PTrue; PNum 20]) (VTuple [VTrue; VNum 10])` did not evaluate to the expected value: `None`
+### Manual Grading: N/A
+* Your automated score exceeded the maximum manual grading score
+
+#### Points earned: max(auto, manual)/30 = 29/30
+## Exercise 4
+### Feedback
+* Please download [feedback.pdf](feedback.pdf) and see the annotations for feedback
+### Exercise 4.1: (2B: 17/30 points)
+### Exercise 4.2: (2B: 2/0 points, 2A: 6/30 points)
+## Total (2B: 48/60 points, 2A: 6/30 points)
