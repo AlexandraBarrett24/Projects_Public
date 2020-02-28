@@ -1,3 +1,5 @@
+#BECAUSE THIS IS A CURRENT CLASS I AM UNABLE TO POST ALL CODE ON A PUBLIC REPOSITORY, IF YOU WOULD LIKE TO SEE MY SOLUTIONS, PLEASE EMAIL ME AND I CAN ADD YOU AS A COLABORATOR TO THE PRIVATE VERSION OF THIS REPOSITORY
+
 PROBLEM 1:
 You are tasked with writing code which will be run by a microcontroller in a digital clock. The hardware has the following relevant features.
 
