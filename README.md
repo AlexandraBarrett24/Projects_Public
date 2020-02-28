@@ -1,6 +1,6 @@
 # Projects
 
-Hello, my name is Alexandra Barrett, I am a sophmore studying Computer Science at the University of Minnesota.
+Hello, my name is Alexandra Barrett, I am a sophmore studying Computer Science and Communications at the University of Minnesota.
 I have posted various folders with projects that I have worked on in various programming languages for my classes.
 
 In addition, below are links to a few websites that I am currently working on.
