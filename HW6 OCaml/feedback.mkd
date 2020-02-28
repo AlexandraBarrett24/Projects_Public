@@ -1,0 +1,28 @@
+## Lab/Course Info
+* late days remaining: 5
+## Exercise 3 (0/30 points)
+* Your submission was missing, did not compile, or generated warnings
+## Exercise 4 (31/60 points)
+### Automated Grading: 0/60
+* Our bot had troubles compiling `hw6.ml`
+### Manual Grading: 31/50
+* `mult` case: 3/3
+* `match` case: 4/14
+* `False` case: 3/3
+* `True` case: 3/3
+* `none` case: 3/3
+* `nil` case: 0/3
+* `some` case: 0/3
+* `cons` case: 3/3
+* `greater` case: 3/3
+* `sub` case: 3/3
+* `minus` case: 3/3
+* `tuple` case: 0/3
+* `less` case: 3/3
+#### Feedback
+You were very close on match – you needed to append your induced bindings onto your environment to be correct.
+#### Points earned: `max(auto, manual)/60` = 31/60
+## Total Bonus Points (2B: 0 points, 2A: 0 points)
+* Capped HW4 + HW5 points: (B: 105/105 points, A: 36/50 points)
+* Eligible bonus points: 0 points
+* Earned bonus points: `min(hw6, eligible points)` = 0

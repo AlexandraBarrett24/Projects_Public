@@ -1,0 +1,17 @@
+(library
+ (name hw6lib)
+ (modules hw5 hw6 hw6extra lexer parser pp))
+
+(executable
+ (name miniml)
+ (public_name miniml)
+ (modules miniml)
+ (libraries hw6lib))
+
+(executable
+ (name minitop)
+ (public_name minitop)
+ (modules minitop)
+ (libraries hw6lib))
+
+(ocamllex lexer)
