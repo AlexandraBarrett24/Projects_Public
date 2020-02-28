@@ -1,0 +1,118 @@
+# Homework 3
+
+**Homework Due:** Monday, October 7 at 10 am.
+
+The goal for Homework 3 is improving your Homework 1 and 2.
+You will work with 1 or 2 of your classmates, and
+you will view their solutions and allow them to view yours.
+
+Note that this sort of sharing is allowed only for lab parts.
+(Discussing lab exercises with classmates is always encouraged.)
+
+# Lab Steps to Complete
+
+We are going to do pair/triple programming. You will work in group to help each other to improve your past submissions.
+
+## Check Your HW1 and HW2 Feedback
+
+```sh
+cd ~/csci2041/hw1
+git pull
+cd ~/csci2041/hw2
+git pull
+```
+
+## Prepare Your HW3 Directory
+
+```sh
+cd ~/csci2041
+git clone git@github.umn.edu:umn-csci-2041-f19/hw3.git
+cd hw3
+./setup
+```
+
+1. **Run ./setup every time you clone it.**
+   Please follow the instructions to fix any error or warning.
+2. **Do NOT edit files on GitHub directly.**
+   I need to call the IT if you accidentally reveal your homework.
+
+## Form Groups
+
+Find 1 or 2 people to work with as a group.  Feel free to move around in lab to
+sit next to the people you want to work with, but everyone should have their
+own computer. Introduce yourselves.
+
+## Prepare the File
+
+The following script will pull the code from your Homework 1 and 2 repositories
+and generate a new file `hw3.ml`.
+
+```sh
+cd ~/csci2041/hw3
+./lab-prepare
+```
+
+At the top of the file `hw3.ml`, fill in the names and Internet IDs of everyone in your group.
+
+## Discussion
+
+We are going to discuss the following functions:
+1. `compose_option` from Homework 1
+2. `add_index` from Homework 2
+3. `generate` from Homework 2 (if time permitting)
+4. `drop_last` from Homework 2 (if time permitting)
+
+For each of these functions, do the following:
+1. First round: each person shows and explains their own solution to others if they have attempted to solve it.
+2. Second round: each person takes turns fixing their code with help from others. The entire group should look at the same code at any time, and should move on only when a TA says so or when all the following steps are taken:
+   - Fix all compiler errors.
+   - Fix all compiler warnings.
+   - Remove all `;;`.
+   - Indent the code clearly and consistently so that it is easy to read.
+
+Be respectful. :-) We are helping each other to learn.
+
+## Early Checking Off
+
+If you think your group has reviewed all four functions before the lab ends, please tell a TA.
+
+**This concludes the lab part of Homework 3.**
+
+# Take-Home Portion
+
+Continue working on `hw3.ml` to improve the following functions (including `join_option` that was not in the lab).
+
+1. `compose_option` from Homework 1
+2. `add_index` from Homework 2
+3. `generate` from Homework 2
+4. `drop_last` from Homework 2
+5. `join_option` from Homework 1
+
+### Grading
+The grading is based upon the quality of your revised code. Here are some important criteria:
+
+* Your revised code should not use anything from the standard library, such as `ref`, `@` or `float_of_int`.
+* Your revised code should generate no errors or warnings.
+* Your revised code should not contain `;;` and should be indented consistently.
+* Your revised code should not print any debugging message.
+* Your revised code should pass all basic test cases.
+* Each function should have a summary comment explaining your changes and how they improve your code's readability, structure, and/or style.
+* You must cite any code or ideas you received from a group member.
+
+You may earn 1B bonus points from this homework to boost your Goal 1 homework grade up to letter B, depending on the quality of your report. For example, if your current Goal 1 homework grade is B-, it is possible to boost it to B by submitting a carefully written report. If you start with a lower grade, it is possible to have a larger boost.
+
+The following OCaml function determines the 1B bonus points one can have:
+```ocaml
+fun hw1_1b -> fun hw1_1a -> fun hw2_1b -> fun hw2_1a ->
+  let effective_1b = min 105 (hw1_1b + hw2_1b) in
+  let effective_1a = min 50 (hw1_1a + hw2_1a) in
+  max 0 ((109 - effective_1b - effective_1a) / 2)
+```
+
+## Anonymous Feedback
+
+We are collecting [anonymous feedback](https://z.umn.edu/csci2041feedback) throughout the semester.
+
+## Due
+
+**Homework Due:** Monday, October 7 at 10 am.

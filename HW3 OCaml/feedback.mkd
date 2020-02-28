@@ -1,0 +1,16 @@
+## Lab/Course Info
+* late days remaining: 6
+## Style
+#### Usages of `;;`
+None found, nice!
+#### Usages of prints
+None found, nice!
+#### Indentation
+Please indent your code consistently
+#### Comments/Explanations
+Comments/Explanations were not sufficient
+#### Feedback
+## Correctness
+* Passed all of the tests, nice work!
+## Total (1B: 0 points)
+* Note, you may have been ineligible for points as you are already doing well on B points!
