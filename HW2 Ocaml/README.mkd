@@ -1,0 +1,245 @@
+# Homework 2: circulus in probandō
+
+**Homework Due:** Wednesday, September 25 at 10 am.
+
+# Lab Steps to Complete
+
+You are encouraged to help each other complete the lab steps. The lab part will not be graded, and you may discuss your solutions to the lab part with others.
+
+## Check Your HW0 Feedback
+
+```sh
+cd ~/csci2041/hw0
+git pull
+```
+
+## Prepare Your HW2 Directory
+
+```sh
+cd ~/csci2041
+git clone git@github.umn.edu:umn-csci-2041-f19/hw2.git
+cd hw2
+./setup
+```
+
+1. **Run ./setup every time you clone it.**
+   Please follow the instructions to fix any error or warning.
+2. **Do NOT edit files on GitHub directly.**
+   I need to call the IT if you accidentally reveal your homework.
+3. If your Homework 1 was not set up in a similar way, ask a TA for help.
+   You are missing all the goodies we provided after Homework 0.
+
+## List Review
+
+We just learned our first inductively defined type constructor! Please try your best to finish as much as possible before the lab ends.
+
+**Note:** Your code should go into [hw2lab.ml](hw2lab.ml).
+
+### Exercise 1.1
+Define a function `head` of type `int list -> int option` such that it will return the first element (if any). For example,
+```ocaml
+head [1; 2; 3] = Some 1
+head [100] = Some 100
+head [] = None
+```
+
+### Exercise 1.2
+Define a function `last` of type `int list -> int option` such that it will return the **last** element (if any). For example,
+```ocaml
+last [1; 2; 3] = Some 3
+last [42] = Some 42
+last [] = None
+```
+
+### Exercise 1.3
+In this exercise, we are going to reverse a list. This one is much more difficult but also more interesting! The goal is to define a function `reverse` of type `int list -> int list` that will, unsurprisingly, reverse a list. For example,
+```ocaml
+reverse [] = []
+reverse [1; 2; 3] = [3; 2; 1]
+reverse [1; 2; 3; 4; 5] = [5; 4; 3; 2; 1]
+```
+
+If we proceed with naive pattern matching, we might be stuck:
+```ocaml
+let rec reverse : int list -> int list =
+  fun l ->
+  match l with
+  | [] -> []
+  | (x :: l) -> ???
+```
+The difficulty is that, while we can recursively apply `reverse` to `l`, we still need to put the old head `x` at the end of the new list. How can we do this? Well, let's define another function to help us! Please define a function `snoc` of type
+```ocaml
+int list -> int -> int list
+```
+which will form a new list with the second argument as the last element. (The name "snoc" is a wordplay; it is "cons" backwards. "Cons" is another name for the `::` operator. So `snoc` is like `::` but in reverse, appending some element to the list.) For example,
+```ocaml
+snoc [] 10 = [10]
+snoc [1; 2] 42 = [1; 2; 42]
+snoc [1; 2; 3] 4 = [1; 2; 3; 4]
+```
+Again, think about what you should do in the base cases (which usually are the empty list) and a formula that works for induction cases. Once you are done with `snoc`, finish the implementation of `reverse`.
+
+### Exercise 1.4
+We can do better than Exercise 1.3. The problem is that we crawled through the entire list each time to place an element in the end. We can optimize it by placing the old head at the end first. That is, instead of reversing the tail and then putting the head in the end, placing the head in the end first and then prepending each element of the reversed tail to it. This avoids the expensive, repeated list traversal and recreation in `snoc`.
+
+Please define a function `rev_append` of type `int list -> int list -> int list` which will, semantically, reverse the first argument and concatenate that with the second argument. For example,
+```ocaml
+rev_append [] [1; 2] = [1; 2]
+rev_append [2; 1] [3; 4; 5] = [1; 2; 3; 4; 5]
+rev_append [3; 2; 1] [] = [1; 2; 3]
+```
+(Hint: Do pattern-matching on the first argument. What should you do in the inductive case?)
+
+Once you have defined the `rev_append` function, define `reverse2` as the more efficient version of `reverse`.
+
+### Exercise 1.5
+
+One of the most common interview problems is to calculate the maximum subarray sum when the numbers in the array can be either positive or negative. A subarray is defined to be a continuous range of an array, including the empty range (whose sum is zero). For example, the maximum subarray sum in `[-10;2;4;-2;2;1;-6;2]` is `7` because the summation of `[2;4;-2;2;1]` is `7`, and it is the best choice; the maximum sum in `[2;2;-3;4]` is `5` because taking the entire array is the best option. Here, we will consider sublists instead of subarrays, but it is essentially the same. In this exercise, sublists are defined to be continuous ranges of a list.
+
+We are going to present the classic algorithm to solve this: Kadane's algorithm. The key is to focus on ranges that **start at a particular position.** The idea is that the best range must begin somewhere, and we can try all the possibilities. If we can calculate the best range starting at each position, then we know the overall best range. It turns out there's an efficient way to compute the best ranges starting at all locations. Inductively, the best range starting at a position is either empty (not including any element) or is composed of the head and the best range starting at the next position. Therefore, by scanning through the list just once, we know the best ranges starting at each position, and thus the global best range!
+
+In this exercise, we are going to output just the sum of the best range. The sum of the best range starting at the head can be calculated by the following code:
+```ocaml
+let rec maximum_sum_from_head : int list -> int =
+  fun l ->
+  match l with
+  | [] -> 0
+  | (x :: l) -> max 0 (x + maximum_sum_from_head l)
+```
+Please study the above code and implement a function `kadane` of type `int list -> int` that will return the maximum sublist sum. For example,
+```ocaml
+kadane [] = 0
+kadane [2;2;-3;4] = 5
+kadane [2;-3;4;-5;6;-7] = 6
+```
+The function should scan through the list only once. (A simple solution is to call `maximum_sum_from_head` at every position, but we can do better than that.) (Hint: it might be helpful to define a helper function of type `int list -> int * int` based on `maximum_sum_from_head`.)
+
+### Checking Off
+
+If you think you have done everything. Congratulations! Please run this script and check off with a TA.
+```sh
+./lab-check-off
+```
+If you did not finish all the exercises before the lab ends, that is okay! Please make sure to run `./setup` in your homework directory and study Exercises 1.1-1.3 carefully. We are going to review Exercises 1.3 and 1.4 tomorrow.
+
+**This concludes the lab part of Homework 2. You should not discuss your solutions to the questions below this line.**
+
+## Take-Home Portion
+
+**Note that sharing or discussing solutions is forbidden (as usual) for this part.
+If you are doing this part in the lab, be sure not to show your screen to others.**
+
+**Grading:**
+As in Homework 1, you collect points in two buckets: 1B (Goal 1 - Basic) and 1A (Goal 1 - Advanced).
+Points are not distributed according to difficulty! You might want to start with "easier" exercises first.
+Advanced ones (the ones involving 1A) are marked with a star, and they are much more difficult.
+See the [additional notes on grading](#additional-notes-on-grading-and-coding-style).
+
+**Note:** Your code should go into [hw2.ml](hw2.ml).
+
+### Exercise 3.1 [1B 20pts]
+Define a function `drop_last` of type `int list -> int list` that keeps everything except for the last one. For example,
+```ocaml
+drop_last [] = []
+drop_last [2] = []
+drop_last [1; 2; 3] ] [1; 2]
+```
+
+### Exercise 3.2 [1B 20pts]
+Define a function `add_index` of type `int list -> (int * int) list` which adds indexes to elements in the list. For example,
+```ocaml
+add_index [] = []
+add_index [3;4] = [(0,3);(1;4)]
+add_index [100;42;36] = [(0,100);(1;42);(2;36)]
+```
+(Hint: you might want to define a helper function, just like how `rev_append` is helping `reverse2` in Exercise 1.4.)
+
+### Exercise 3.3 [1B 25pts]
+Define a function `generate` of type `(int -> int option) -> int -> int list` which repeatedly applies the first argument until we see `None`. The second argument is the initial value. This is similar to Exercise 5.1 in Homework 1, but we want to collect all intermediate values produced by the function.
+```ocaml
+generate (fun i -> None) 3 = [3]
+generate (fun i -> match i <= 0 with true -> None | _ -> Some (i-1)) 4 = [4;3;2;1;0]
+generate (fun i -> match i with 1 -> None | _ -> match i mod 2 with 0 -> Some (i/2) | _ -> Some (i*3+1)) 100
+  = [100; 50; 25; 76; 38; 19; 58; 29; 88; 44; 22; 11; 34; 17; 52; 26; 13; 40; 20; 10; 5; 16; 8; 4; 2; 1]
+    (* The famous Collatz conjecture (also known as the 3n + 1 problem) says the sequence will
+       always go to one (1) from any positive integer. Here we chose 100 as the starting point. *)
+```
+
+### \*Exercise 3.4 [1A 10pts + bonus 1B 3pts]
+Define a function `duplicate_inner` of type `int list -> int list` that duplicates only the "inner" elements of a list. For example,
+```ocaml
+duplicate_inner [] = []
+duplicate_inner [0] = [0]
+duplicate_inner [0;1] = [0;1]
+duplicate_inner [0;1;2;3;4] = [0;1;1;2;2;3;3;4]
+```
+
+### \*Exercise 3.5 [1A 10pts + bonus 1B 3pts]
+Define a function `delete_every` of type `int -> int list -> int list` that removes every `n`th element from the list.
+```ocaml
+delete_every 2 [] = []
+delete_every 3 [1;2;3;4;5;6;7] = [1;2;4;5;7]
+delete_every 1 [1;2;3;4] = []
+```
+
+### \*Exercise 3.6 [1A 10pts + bonus 1B 3pts]
+(This exercise is long and difficult; please make sure you have completed other exercises.)
+
+In this exercise, we are going to play with the Stern-Brocot tree, which has every positive rational number in it. The task is to locate the input rational number in the tree. The tree has several neat properties and can be used to find the "best" approximation of a real number in terms of rational numbers.
+
+To start with, we define the _mediant_ of two fractions a/b and c/d as (a+c)/(b+d). The great discovery was that we can recover all positive rational numbers in the reduced form by repeatedly inserting mediants between neighboring fractions if we start with 0/1 and 1/0. That is, before we start the insertion, we have
+```
+0/1 1/0
+```
+After one round of mediant insertion, we have the following numbers (where the new ones are in brackets):
+```
+0/1 [1/1] 1/0
+```
+After another round of mediant insertion, we have
+```
+0/1 [1/2] 1/1 [2/1] 1/0
+```
+After yet another round of mediant insertion, we have
+```
+0/1 [1/3] 1/2 [2/3] 1/1 [3/2] 2/1 [3/1] 1/0
+```
+It is a theorem that all the inserted mediants are irreducible fractions (which means their numerator and denominator are coprime), and every positive rational number will appear at some iteration. We can draw a binary tree out of these inserted mediants by layering them by the iteration at which they are inserted. Here is a diagram originally from PlanetMath and then recreated by [Aaron Rotenberg](https://commons.wikimedia.org/wiki/User:Aaron_Rotenberg) (licensed under [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/)) showing the first few iterations. The solid lines form the binary tree.
+
+![Stern-Brocot Tree](stern-brocot-tree.png)
+
+For this exercise, your task is to write a program to find the path from the root to the input rational number. Due to the lack of custom-defined data types (which will be covered in October), we are going to use `bool list` to represent the path. `true` means going to the right branch, and `false` means going to the left. An empty list `[]` means that the rational is at the root, and the list `[true; false; false]` means going to the right, to the left, and then to the left. (It is 4/3.)
+
+The algorithm to find the path is through binary search. If you felt a little overwhelmed by the above discussion about the Stern-Brocot tree, it is sufficient to understand the following algorithm:
+
+1. Start with `low = 0/1` and `high = 1/0`.
+2. Suppose `low = a/b` and `high = c/d`. Calculate the `mediant = (a+c)/(b+d)`.
+3. If the target number matches `mediant`, the search ends.
+4. If the target number is smaller than the mediant; output `false`, set the new `high` to `mediant`, and go to Step 2.
+5. If the target number is greater than the mediant; output `true`, set the new `low` to `mediant`, and go to Step 2.
+
+The path is then the list of `true` or `false` produced by this algorithm. Your task is to write a function `stern_brocot` of type `int * int -> bool list` that locates the input fraction a/b (represented by `(a,b)` in this exercise) in the tree. While the above description is written in a style mimicking "pseudocode" in other textbooks, you might find that your OCaml program is shorter and arguably cleaner than this. Moreover, it can run!
+
+Note that you do not need to write a helper function to reduce fractions. All the inserted mediants will be irreducible (by math). You do not need to reduce the input rational, either, because you only need to compare the input to other rationals.
+
+Here are some examples for you to check your understanding:
+```ocaml
+stern_brocot (5,5) = []
+stern_brocot (3,8) = [false; false; true; false]
+stern_brocot (9,3) = [true; true]
+```
+
+### Additional Notes on Grading and Coding Style
+
+You are forbidden to use any function from the OCaml standard library **except basic operations on int** (such as =, <>, <, >, <=, >=, min, max, +, -, \*, /, mod, compare). You have learned enough syntax in class to finish these exercises without any outside help. However, you can implement helper functions or define any additional values in [hw2.ml](hw2.ml) or [hw2lab.ml](hw2lab.ml). We do not care about those auxiliary declarations, as long as by the end of your program the names designated in the exercises point to the correct functions.
+
+The correctness of your functions is the ultimate criterion. Points are assigned based on the (secret) test cases your solution has passed. There will be tests to check your submission automatically, but we might use a different set of test cases for grading. Again, please make sure you have run the script `./setup` to set up the auto-checker (for your own benefits).
+
+We will not check your coding style this time. However, we will have lab exercises (currently planned on 10/1, after the midterm) where you and your partners share your solutions and work together to improve their quality. Please try your best to write clean, elegant code.
+
+## Anonymous Feedback
+
+[CSCI Anonymous Feedback Form](https://z.umn.edu/csci2041feedback)
+
+## Due
+
+**Homework Due:** Wednesday, September 25 at 10 am.
