@@ -1,0 +1,35 @@
+CSCI 4041, Spring 2020, Programming Assignment 1
+Due Friday, 1/31/20, 7:00 PM (submission link on Canvas)
+
+This is not a collaborative assignment; you must design, implement and test the solution(s) on your own.  You may not consult or discuss the solution with anyone other than the course instructor or TAs.  In addition, you may not include solutions or portions of solutions obtained from any source other than those provided in class.  Obtaining or sharing solutions to any programming assignment for this class is considered academic misconduct.  If you are not sure what this means, consult the class syllabus or discuss it with the course instructor.
+
+Introduction:
+
+You are r0b1n h00d, super hacker.  Your objective is to take from the rich and give to the poor.  Specifically, you have found a way to access all of the accounts at various banks.  Your plan is simple: at each bank, move $1337 from the account with the maximum balance to the account with the longest name that has a negative balance (your fellow hacker Rumplestiltskin recently sent you a very nice birthday present, so you’re feeling generous to him and his long-named kin today).  You don’t see any way this could possibly go wrong.
+
+The purpose of this assignment is to check your understanding of basic Python programming, especially control structures, objects, functions, and lists.  Mastery of Python is not necessary to succeed in CSCI 4041, since programming is not the focus of the class; if you understand how to use the concepts listed above, you should be fine.  This should be a very straightforward assignment, so If you find yourself struggling, I encourage you to ask for Python help during office hours or via email.
+
+Instructions:
+
+Download the PA1.py template from the course website.  
+
+The template contains an Account class, which represents a single bank account.  Bank accounts have two instance variables:
+.name is a string representing the name of the account holder.
+.balance a floating point number representing the balance of the account (which may be positive or negative), in dollars.
+
+You must implement three functions: longest_name, filter_negative, and r0b1n_h00d.  Each of these function takes one argument: account_list, which is a list of Account objects, representing all of the accounts for a given bank.  You can assume that the list has at least one element.  
+longest_name should return the Account object in the list for which the account holder’s name is the longest.  You can assume that there will be no ties for the longest name.  
+filter_negative should return a new list of Account objects, which should include only the objects in the original list that had a negative balance (that is, their balance is less than 0), in the order they appeared in the original list.
+r0b1n_h00d should move $1337 from the Account with the maximum balance, to the account with the longest name out of those that have a negative balance.  You can assume that there will be at least one account in the list with a negative balance.  This function should not return anything.  You must call longest_name and filter_negative as part of your solution.
+
+These functions should not have any side effects aside from those specified in the above description (for example, none of the functions should change the names on any Account or create any new Account objects, and in each function the order of the list should be unaltered, except with some of the accounts removed for filter_negative).
+
+
+Requirements:
+
+You must download the template file PA1.py and edit the functions mentioned above.  You can create your own helper functions, but don’t edit the code beyond the “DO NOT EDIT” line. 
+You are not permitted to use the input() function as this will break the grading script, nor can you import any modules beyond the ones already imported in the template.
+You may use any strategy you want to complete the task, so long as it works for any reasonable list of Account objects and doesn’t break the above requirements.
+Your program must run without errors on the version of Python installed on the CSELabs machines, Python 3.6.9. (if you’re testing this on CSELabs, you need to type python3 or idle3 instead of python or idle to start the correct version from the terminal) 
+This assignment will be graded automatically based on the number of test cases your program passes.  There will be several secret test cases in addition to the ones included in the template to ensure you’re not hard-coding in the solutions.
+This program will only run test cases until you fail one, avoiding the problem of having to scroll through test output to find the one broken test case.
