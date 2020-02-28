@@ -1,0 +1,104 @@
+PROBLEM 1:
+You are tasked with writing code which will be run by a microcontroller in a digital clock. The hardware has the following relevant features.
+
+An internal clock that increments 1 time per second. The value reported by the clock is stored in a register. In C this is presented as a global variable.
+A digital display with a control port; setting certain global variable will change the display to show information to a user of the clock.
+User code that you will need to write to update the display based on the value reported by the internal clock.
+A simulator program with Makefile to test your code
+Each feature is discussed in subsequent sections.
+
+A special register is periodically updated to contain an integer which is the number of seconds since the beginning of the day. This special register is accessible in C programs via a global variable:
+
+extern int TIME_OF_DAY_SEC;
+// Time of day in seconds. Tied to a hardware clock that automatically
+// increments it 1 time per second starting at midnight. The
+// simulatator provides a C global variable to emulate this part of
+// the hardware. This variable is present when #include "clock.h" is
+// used and should not be declared in any user code.
+You do not need to define this variable as it is already there. You do not need to set this variable as it is automatically changed by the hardware. Instead, you will need to access its value to determine various aspects of the current time relevant to display.
+
+Whether it is AM or PM (AM is hours 12midnight to 11:59am, PM if 12noon to 11:59pm)
+The hour of the day (12-hour format so this is 1-12)
+The ones and tens digits in the hour (blank or 1 for tens, 0-9 for ones)
+The time in minutes (0-59)
+The ones and tens digits in the minutes (0-5 for tens, 0-9 for ones)
+
+Rather than write everything that needs to be done within clock_update(), several helper functions will be used to divide this task into several more manageable and testable chunks.
+
+These should all be written in clock_update.c and are as follows.
+
+Converting time of Day in Seconds to a Struct
+int set_tod_from_secs(int time_of_day_sec, tod_t *tod);
+// Accepts time of day in seconds as an argument and modifies the
+// struct pointed at by tod to fill in its hours, minutes,
+// etc. fields.  If time_of_day_sec is invalid (negative or larger
+// than the number of seconds in a day) does nothing to tod and
+// returns 1 to indicate an error. Otherwise returns 0 to indicate
+// success. This function DOES NOT modify any global variables
+//
+// CONSTRAINT: Uses only integer operations. No floating point
+// operations are used as the target machine does not have a FPU.
+// 
+// CONSTRAINT: Limit the complexity of code as much as possible. Do
+// not use deeply nested conditional structures. Seek to make the code
+// as short, and simple as possible. Code longer than 40 lines may be
+// penalized for complexity.
+This function works with the struct tod_t defined in clock.h which has the following layout.
+
+// Breaks time down into 12-hour format
+typedef struct{
+  short hours;
+  short minutes;
+  short seconds;
+  char ispm;
+} tod_t;
+The process of filling in values is simply a matter of doing some division/modulo and assigning values.
+
+Setting bits in an integer according to a tod_t
+int set_display_bits_from_tod(tod_t tod, int *display);
+// Accepts a tod and alters the bits in the int pointed at by display
+// to reflect how the clock should appear. If any fields of tod are
+// negative or too large (e.g. bigger than 12 for hours, bigger than
+// 59 for min/sec), no change is made to display and 1 is returned to
+// indicate an error. Otherwise returns 0 to indicate success. This
+// function DOES NOT modify any global variables
+//
+// May make use of an array of bit masks corresponding to the pattern
+// for each digit of the clock to make the task easier.
+// 
+// CONSTRAINT: Limit the complexity of code as much as possible. Do
+// not use deeply nested conditional structures. Seek to make the code
+// as short, and simple as possible. Code longer than 85 lines may be
+// penalized for complexity.
+This function will need to do bit shifting along with bitwise operations to construct the correct bit patter for the clock display.
+
+int clock_update();
+// Examines the TIME_OF_DAY_SEC global variable to determine hour,
+// minute, and am/pm.  Sets the global variable CLOCK_DISPLAY_PORT bits
+// to show the proper time.  If TIME_OF_DAY_SEC appears to be in error
+// (to large/small) makes no change to CLOCK_DISPLAY_PORT and returns 1
+// to indicate an error. Otherwise returns 0 to indicate success.
+//
+// Makes use of the set_tod_from_secs() and
+// set_display_bits_from_tod() functions.
+// 
+// CONSTRAINT: Does not allocate any heap memory as malloc() is NOT
+// available on the target microcontroller.  Uses stack and global
+// memory only.
+
+PROBLEM 2
+The file puzzlebox.c contains source code that reads inputs from a file named on the command line. If the inputs are correct, points are awarded. If inputs are incorrect, error messages are printed.
+
+The puzzlebox is arranged into a series of phases each of which has some points associated with it.
+
+Not all phases must be completed to get full credit but the phases must done in order.
+Each phase reads inputs from the file provided on the command line and performs calculations on them to see if they are "correct" according to various criteria
+The very first input is your internet ID like kauf0095 (first part of your UMN email address). This input is used to add randomness to the puzzle so that your answers will be different from most other students. You must you use your own internet ID.
+The purpose of this problem is get familiar with using a debugger. This is a powerful tool that pauses programs, allows internal values to be printed and code to be stepped through line by line. It is nearly essential to use as the code in puzzlebox is intentionally convoluted in places. Being able to pause execution and print values at various points make it much easier to solve the puzzles.
+
+The puzzles presented in the different phases make use of a variety of C program techniques which we have or will discuss including.
+
+-Bit-wise operations and their use in place of arithmetic
+-String and character array manipulations
+-Interpreting bits as one of several kinds of things (integer, float, character) through pointers and unions
+-More extensive C control structures like goto and labels
