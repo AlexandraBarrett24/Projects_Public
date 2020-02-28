@@ -1,0 +1,24 @@
+## Lab/Course Info
+* late days remaining: 3
+## Exercise 3 (3B: 30/30 points)
+### Automated Grading: 30/30
+* Passed all of the tests, nice work!
+### Manual Grading: N/A
+* Your automated score exceeded the maximum manual grading score
+## Exercise 4.1 (3B: 30/30 points)
+### Automated Grading: 30/30
+* Passed all of the tests, nice work!
+### Manual Grading: N/A
+* Your automated score exceeded the maximum manual grading score
+## Exercise 4.2 (3B: 9/0 points, 3A: 27/30 points)
+### Automated Grading: 27/30
+* Is `StringCacheTester(...).step (Find ("c", None))` calling the correct function?: `false`
+### Manual Grading: N/A
+* Your automated score exceeded the maximum manual grading score
+#### Feedback
+It looks like your case for Find (o, None) never runs C.find o
+## Exercise 4.3 (3A: 5/10 points)
+* Rank: 11
+* Number of cases that failed your tests: 29
+* Total length of your test cases: 54
+## Total (3B: 69/60 points, 3A: 32/30 points)

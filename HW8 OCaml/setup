@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+. .env.sh
+
+if [ ! -d "${HOOK_DIR}" ]; then
+  if ! git clone --quiet "${HOOK_REPOSITORY}" "${HOOK_DIR}"; then
+    echo
+    echo "I am not able to download the Homework ${HOMEWORK_NUMBER} scripts through Git and SSH."
+    echo "Do you have your SSH key installed, and stay connected to the Internet?"
+    echo "Please redo the steps at https://z.umn.edu/csci2041ssh"
+    echo "if you think you have not set up the SSH key authentication correctly."
+    echo
+    exit 1
+  fi
+fi
+
+cd "${HOOK_DIR}"
+git pull --quiet
+./setup

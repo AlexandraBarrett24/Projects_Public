@@ -1,0 +1,21 @@
+## Lab/Course Info
+* late days remaining: 3
+## Hw7 Revision (0/60 points)
+### Automated Grading
+* `Scope.(lookup_value ["x"] (append (bind_value ("x", 1) empty) (bind_value ("x", 2) empty)))` did not evaluate to the expected value: `2`
+* `Scope.(lookup_value ["x"] (append (bind_value ("x", 1) empty) (bind_value ("x", 2) empty)))` did not evaluate to the expected value: `2`
+### Proper Commenting
+* Please comment any changes (or lack thereof) made
+#### Feedback
+No comment describing changes.
+## Hw8 Revision (30/30 points)
+### Automated Grading
+* Passed all of the tests, nice work!
+
+#### Feedback
+Looks good.
+## Total Bonus Points (3B: 0 points, 3A: 0 points)
+* Revision points: 30/90 points
+* Capped HW7 + HW8 points: (B: 105/105 points, A: 50/50 points)
+* Eligible bonus points: `max(0, ceil((124 - cap) * 0.68))` = 0 points
+* Earned bonus points: `min(revision points, eligible points)` = 0 points

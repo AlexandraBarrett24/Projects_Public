@@ -1,0 +1,101 @@
+# Homework 8: Count, Cache and Check!
+
+**Homework Due:** Monday, November 18 at 1:25 pm.
+
+# Lab Steps to Complete
+
+## Prepare Your Homework 8 Directory
+
+```sh
+cd ~/csci2041
+git clone git@github.umn.edu:umn-csci-2041-f19/hw8.git
+cd hw8
+./setup
+```
+
+1. **Run ./setup every time you do the cloning.**
+2. **Do NOT edit files on GitHub directly.**
+
+## Tally Counters
+
+### Exercise 1.1: Interface
+
+Listen to your TA(s) explaining the following signature:
+```ocaml
+module type COUNTER =
+sig
+  val read : unit -> int
+  val increment : unit -> unit
+  val reset : unit -> unit
+end
+```
+Make sure you understand what these `unit` for.
+
+### Exercise 1.2: Implementation
+
+Please open up `hw8.ml` and finish the `Counter` module.
+
+## Testing Tally Counters
+
+Listen to the TA explaining the `CounterTester` functor.
+Here is a very useful function in the standard library:
+[List.iter](https://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html#VALiter).
+
+### Exercise 2: Write Test Cases
+
+Write out at least five test cases after the functor `CounterTester` for the tally counter, and then run `./lab-check-off`. The script will re-run the entire program for each test case you provide.
+
+**This concludes the lab part of Homework 8.**
+
+# Take-Home Portion
+
+All the code should go to `hw8.ml`.
+
+## Exercise 3: Parametrized Counters [3B 30]
+
+The goal of Exercise 3 is to write a generic counter parametrized by the initial and step values.
+Read the comments in `COUNTER_PARAMS` carefully and finish the `ParametrizedCounter` functor.
+
+## Exercise 4: Caching
+
+The goal of Exercise 4 is to implement a simple key-value storage system where the type of keys is `string` and that of values is `int`. You will also write some test cases.
+
+### Exercise 4.1: Caching [3B 30]
+
+Read the comments in the signature `STRING_CACHE` carefully and finish the module `StringCache`.
+
+It is recommended to use [association lists](http://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html#1_Associationlists) or [dictionary-like data structure](https://www.cs.cornell.edu/courses/cs3110/2019sp/textbook/modules/stdlib_map.html) in the standard library. You can also steal the binary search tree from the lectures, or use your own data structure. However, it is forbidden to use any mutable data structure (such as `Hashtbl`) in the standard library because they defeat the purpose of this homework. (After you have done CSci 2041, you should always consider them in a serious OCaml project, though.)
+
+### Exercise 4.2: Testing Framework [3A 30, bonus 3B 10]
+
+Read the comments in the signature `STRING_CACHE_TESTER` carefully and finish the module `StringCacheTester`. It is similar to Exercise 2, but for your `StringCache`.
+
+### Exercise 4.3: Test Cases [Bonus 3A 10]
+
+Write out some test cases as `string_cache_tests`. A test case is a list of interactions as in Exercise 2. You are eligible for the bonus points if
+
+1. Your first ten test cases pass your own implementation.
+2. Your first ten test cases will pass any correct implementation.
+3. Each of your first ten test cases is of length less than or equal to 20.
+
+If you provide less than ten test cases, we will pretend all the remaining ones are `[]` (which will pass any implementation).
+
+The bonus points are awarded to the eligible submissions according to their effectiveness. The submissions will receive 10, 10, 9, 9, 8, 8, ..., 2, 2, 1, 1, and zero points afterward, from the most effective to the least effective. Effectiveness is measured by the number of faulty submissions (from your classmates) your first ten cases can detect (the more the merrier), and then the total number of interactions used in the first ten cases (the fewer the better).
+
+If there are ties, then the sets of the same effectiveness share the total points they would have, rounded up. For example, if the first six sets of test cases are in a tie, then all of them will get (10+10+9+9+8+8)/6 = 9 points. Another example is that, if there are 110 sets that are all most effective, all of them receive (10+10+9+9+...+1+1)/110 = 1 bonus point.
+
+You are allowed to share test cases, but it might not be wise to share all of your test cases if you want to earn bonus points.
+
+## Where is Correctness Checking
+Write your own test cases already!
+
+## Grading
+The grading is based upon the correctness of your code and effectiveness of your test cases. For code, we will take the maximum of manual grading and auto grading as in Homework 5, but you have to pass all secret test cases in order to receive full points.
+
+## Anonymous Feedback
+
+We are collecting [anonymous feedback](https://z.umn.edu/csci2041feedback) throughout the semester.
+
+## Due
+
+**Homework Due:** Monday, November 18 at 1:25 pm.
