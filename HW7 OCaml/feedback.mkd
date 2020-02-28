@@ -1,0 +1,20 @@
+## Lab/Course Info
+* late days remaining: 4
+## Exercise 3 (3B: 45/60 points)
+### Automated Grading: 45/60
+* `ExtendedQueue.(dequeue_all (append (enqueue_all [1; 2] empty) (enqueue_all [3; 4] empty)))` did not evaluate to the expected value: `[1; 2; 3; 4]`
+* `ExtendedQueue.(dequeue_all (append (enqueue 3 (match dequeue (enqueue_all [10; 2; 30] empty) with Some (_, q) -> q | _ -> failwith "EmptyQueue")) (enqueue 6 (match dequeue (enqueue_all [5; 4; 100] empty) with Some (_, q) -> q | _ -> failwith "EmptyQueue"))))` did not evaluate to the expected value: `[2; 30; 3; 4; 100; 6]`
+* `ExtendedQueue.(dequeue_all (reverse (enqueue 100 (match dequeue (enqueue_all [1; 20; 30] empty) with Some (_, q) -> q | _ -> failwith "EmptyQueue"))))` did not evaluate to the expected value: `[100; 30; 20]`
+### Manual Grading: 24/48
+* `reverse` case: 0/12
+* `append` case: 0/12
+#### Feedback
+You lost the back stack in reverse and append.
+## Exercise 4 (3B: 9/0 points, 3A: 28/30 points)
+### Automated Grading: 28/30
+* `Scope.(lookup_value ["x"] (append (bind_value ("x", 1) empty) (bind_value ("x", 2) empty)))` did not evaluate to the expected value: `2`
+### Manual Grading: N/A
+* Your automated score exceeded the maximum manual grading score
+#### Feedback
+You appended scopes in the wrong order.
+## Total (3B: 54/60 points, 3A: 28/30 points)

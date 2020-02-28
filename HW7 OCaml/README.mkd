@@ -1,0 +1,66 @@
+# Homework 7: Stacks and Scopes
+
+**Homework Due:** Monday, November 11 at 1:25 pm.
+
+# Lab Steps to Complete
+
+## Prepare Your Homework 7 Directory
+
+```sh
+cd ~/csci2041
+git clone git@github.umn.edu:umn-csci-2041-f19/hw7.git
+cd hw7
+./setup
+```
+
+1. **Run ./setup every time you do the cloning.**
+   Please follow the instructions to fix any error or warning.
+2. **Do NOT edit files on GitHub directly.**
+   I need to call the IT if you accidentally reveal your homework.
+
+## Exercise 1.1: A Queue from Two Stacks
+
+Listen to your TA(s) explaining the algorithm that uses two stacks to construct a queue.
+See [this StackOverflow answer on queues](https://stackoverflow.com/a/39089983) for an excellent explanation if you miss the lab.
+
+## Exercise 1.2: Implement Queue.dequeue
+
+Now that you have understood the algorithm. Please open up `hw7.ml` and implement the `Queue.dequeue` function.
+
+## Exercise 1.3: Complexity Analysis
+
+Is it true that the number of calls to `Stack.pop` and `Stack.push` is always bound by four times the number of elements ever handled by the queue if you only apply `enqueue` and `dequeue` to the newest copies of queues? (That is, you only work on the latest queue.) Try to guess an answer, and then convince your neighbors. What if you apply these two operators to older copies of queues?
+
+## Early Checking Off
+
+If you think you have done the implementation, run `./lab-prepare` and tell a TA.
+
+**This concludes the lab part of Homework 7.**
+
+# Take-Home Portion
+
+All the code should go to `hw7.ml`.
+
+## Exercise 3: Feature-Rich Queues [3B 60]
+
+Read the comments in the signature `EXTENDED_QUEUE` carefully and finish the module `ExtendedQueue`.
+
+## Exercise 4: Name Management [3A 30, bonus 3B 10]
+
+Read the comments in the signature `SCOPE` carefully and finish the module `Scope`.
+
+We will integrate your Homework 7 into Homework 9 to equip MiniML with modules.
+
+## Correctness Checking
+As usual, the automatic correctness checking for Homework 7 will not be enabled until today (11/5) 9 pm.
+
+## Grading
+The grading is based upon the correctness of your code. We will take the maximum of manual grading and auto grading as in Homework 5, but you have to pass all secret test cases in order to receive full points.
+
+## Anonymous Feedback
+
+We are collecting [anonymous feedback](https://z.umn.edu/csci2041feedback) throughout the semester.
+
+## Due
+
+**Homework Due:** Monday, November 11 at 1:25 pm.
