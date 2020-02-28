@@ -95,7 +95,7 @@ units_per_height: 54.61
 122 | XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
  67 | XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
  13 |XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-     +----+----+----+----+----+----+----+----+----+----
+     +----+----+----+----+----+----+----+----+----+---- 
      0    5    10   15   20   25   30   35   40   45   
 
 4.2 A Function For Graphing Data
