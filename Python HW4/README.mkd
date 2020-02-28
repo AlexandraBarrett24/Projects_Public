@@ -1,0 +1,18 @@
+CSCI 4041, Spring 2020, Programming Assignment 4
+Due Friday, 2/21/19, 7:00 PM (submission link on Canvas)
+
+You have been hired as a manager for Epicperson, the local superhero.  Epicperson’s greatest weakness is that they are extremely distractible: several villains have escaped justice because Epicperson received a text reminder to pick up laundry mid-battle and simply left.  You have decided to implement a priority queue to handle all of Epicperson’s tasks, in which you assign an importance value to each task, and ensure that Epicperson only hears about the item that is currently of highest priority.  
+Remember, the city is depending on you.  Good luck.
+
+Download the template PA4.py from the class website.  The template includes a Task class, which consists of a description of a Task and a number representing its priority (higher values are more important).  
+To implement a heap, you will just be using a Python list full of Task objects.  Unlike the textbook implementation, you don’t need to distinguish between the state of the array and the state of the heap: all elements in the list are assumed to be in the heap.  This means that your heap_size is just the length of the task list.  To increase the heap size, use the list method .append() to add an element to the end, and to decrease the heap size, use the list method .pop() to remove the element at the end.  
+The file also includes some test cases representing sets of tasks that Epicperson received, and the order that he should have completed them based on their relative priorities.  Note that unlike previous assignments, each test will operate on the same heap, representing the task list as the day progresses for Epicperson.
+You’ll need to implement several methods which essentially mirror those in Section 6.5 of the textbook (increase_task_priorty corresponds to Heap-Increase-Key in the textbook, etc) in order to create a functional Priority Queue for Epicperson’s Tasks.  
+
+Requirements:
+You must download the template file PA4.py and edit the insert_task, extract_max_priority_task, and increase_task_priority functions.  You can create your own helper functions as well, but do not edit anything beyond the “DO NOT EDIT” line in the file.
+You are not permitted to use any built-in Python sorting routines like the sorted() function or the .sort() list method.  You are also not allowed to use any Python function that asks for user input, such as input(), as this will break the grading script.  You also are not permitted to import any modules beyond those provided in the template.
+You must implement the Heap-based Priority Queue methods based on the methods in Chapter 6 of the textbook.  Any other priority queue algorithms will receive very little credit, even if you pass every test case.
+However, note that while the textbook algorithms describe how to implement a priority queue for a list of numbers, this problem requires you to implement a priority queue of Task objects, so you will need to adjust the algorithms slightly.
+In particular, be careful on the difference between  heap_increase_key and max_heap_insert functions: in the textbook both of these just took a number, key, as input, but here increase_task_priority still takes a number (representing the new priority of a given task), but insert_task function takes a Task object as input.
+This assignment will be graded automatically based on the number of test cases your program passes.  There will be several secret test cases in addition to the ones included in the template to ensure you’re not hard-coding in the solutions.
