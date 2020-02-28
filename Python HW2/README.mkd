@@ -1,0 +1,9 @@
+CSCI 4041, Spring 2020, Programming Assignment 2
+Due Friday, 2/7/20, 7:00 PM (submission link on Canvas)
+
+Introduction:
+The painter’s algorithm is a simple technique used in computer graphics for rendering a scene in which some elements obscure parts of other elements.  The idea is that if you sort the objects in your scene by their depth into the screen, and then draw them in order, starting with the most distant and ending with the closest, you will naturally draw things in the foreground over the top of things in the background.  
+
+Instructions:
+In this assignment, you’ll be implementing the painter’s algorithm using Insertion Sort.  The template includes a Rectangle class, including a draw method to sketch a given Rectangle object using Python’s turtle module, along with some test cases, including the sample scene above.  You’ll need to implement the insertion_sort method, which takes one argument, a list of Rectangle objects, and uses the Insertion Sort algorithm presented in the textbook to sort that list based on each Rectangle’s depth attribute, from high depth to low depth (that is, furthest away to closest). 
+
