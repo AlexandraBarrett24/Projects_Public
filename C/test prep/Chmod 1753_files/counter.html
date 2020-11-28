@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!-- saved from url=(0127)https://yvoschaap.com/producthunt/counter.html#href=https%3A%2F%2Fwww.producthunt.com%2Fr%2F090078d78802f5%2F101624&layout=wide -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Vote Button for Producthunt</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+<link rel="canonical" href="https://yvoschaap.com/producthunt/button.html">
+<style>
+/**
+ * Reset styles
+ */
+body,
+div,
+ul,
+ol,
+li{
+    margin: 0;
+    padding: 0;
+}
+li {
+    font-family: inherit;
+    font-size: inherit;
+    vertical-align: baseline;
+}
+img {
+    border: 0;
+}
+ol,
+ul {
+    list-style: none;
+}
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+ins {
+    text-decoration: none;
+}
+
+/* 
+ * Body
+ */
+body {
+    font-family: 'Helvetica Neue',Helvetica,sans-serif,Arial;
+    color: #534540;
+}
+a {
+    color: #534540;
+    text-decoration: none;	
+}
+a:hover {
+    color: #da552f;
+}
+iframe {
+    border: none;
+}
+.share {
+    display: block;
+    white-space: nowrap;
+    position: relative;
+}
+.count, .button {
+    vertical-align: top;
+    line-height: 1;
+    background: #fff;
+}
+.tall {
+    width: 56px;
+}
+.tall .count {
+    text-align: center;
+    margin-bottom: 6px;
+    overflow: visible;
+    height: 30px;
+    position: relative;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+.tall .count:after,
+.tall .count:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.tall .count:before {
+    border-color: rgba(192, 192, 192, 0);
+    border-top-color: #ccc;
+    border-width: 5px;
+    margin-left: -5px;
+}
+.tall .count:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: #fff;
+    border-width: 4px;
+    margin-left: -4px;
+}
+.tall .count .hold {
+    padding-top: 6px;
+}
+.button {
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -webkit-appearance: none;
+    border: 1px solid rgba(0, 0, 0, .17);
+    border-radius: 2px;
+    display: block;
+    transition: background-color .218s, border-color .218s, box-shadow .218s;
+    white-space: nowrap;
+    text-align: center;
+    padding: 2px 2px 2px 4px;
+}
+.button:hover {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.button ins, .review .count ins.loaded  {
+    height: 15px;
+    display: block;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAA3NCSVQICAjb4U/gAAAAolBMVEXWQxn32dLjfWDaVjDsp5PeZkP++/raUy3YTCP87+znkHfvuan77+zmiG7cXjvfb0/pmIL65N7////ZUSr99fPXRx755N/trJnbWTTaVC799PHfaknsq5j66uXmjXTfcFDtrpz+/Pv99/PWRBrbVCzZUivbWjXnkHj/+/v88e7XSB/XQhrjf2LdYT3pm4ThcFDfa0r99fHYTCT99/XtrZvbWjYBAwo5AAAACXBIWXMAAAsSAAALEgHS3X78AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABZ0RVh0Q3JlYXRpb24gVGltZQAwNS8yNi8xNXo/AbUAAACeSURBVBiVZU/RCsIwDIxGq7bT6drpaKdzjDIcKrL5/99mk1Z88KAQ7nrJHRQEo/peGR4hvLZ2GODqNhJZ3mkidJdnRIhmQFwxhkYE4g1BrarKj4hwLcC68F/PjDnPR9QvC4rtt+djYb33qECye7MtpSBJJuIopumyZiJZ9svdSJNKSw/30pPg7PcsMuhsDBYRg/1F/5U7pXJcX8pU/wPEtg/tzrcE0wAAAABJRU5ErkJggg==') no-repeat 0 center;
+
+    font-size: 12px;
+    line-height: 16px;
+    padding-left: 13px;
+}
+
+/* target webkit due to support of background-size: contain not available in ie8 */
+@media all and (-webkit-min-device-pixel-ratio: 1),  (min-resolution: 2dppx){
+    .button ins, .review .count ins.loaded  {
+        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik00MCAyMGMwIDExLjA0Ni04Ljk1NCAyMC0yMCAyMFMwIDMxLjA0NiAwIDIwIDguOTU0IDAgMjAgMHMyMCA4Ljk1NCAyMCAyMCIgZmlsbD0iI0RBNTUyRiI+PC9wYXRoPjxwYXRoIGQ9Ik0yMi42NjcgMjBIMTd2LTZoNS42NjdjMS42NTYgMCAzIDEuMzQzIDMgM3MtMS4zNDQgMy0zIDNtMC0xMEgxM3YyMGg0di02aDUuNjY3YzMuODY2IDAgNy0zLjEzNCA3LTdzLTMuMTM0LTctNy03IiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PC9nPjwvc3ZnPg==') no-repeat 0 center;
+    }
+}
+
+/* 
+ * 
+ */
+
+.wide .button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 52px;
+    display: inline-block;
+}
+.wide .count {
+    position: absolute;
+    left: 54px;
+    top: 0;
+    margin-left: 3px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 3px 5px;
+    position: relative;
+}
+.wide .count:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(192, 192, 192, 0);
+    border-right-color: #ccc;
+    border-width: 5px;
+    margin-top: -5px;
+}
+.wide .count:after {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 4px;
+    margin-top: -4px;
+}
+.wide .count .hold {
+    font-size: 12px;
+}
+
+/*
+ * Review
+ */
+.review .button ins {
+    background: none;
+    padding-left: 0;
+}
+
+.review #counter:before {
+    animation-name: none;  
+}
+.review .count ins.loaded {
+   background-position: center center;
+}
+
+.review.tall .count .hold {
+    padding-top: 2px;
+}
+.review.tall .count ins.loaded {
+   background-size: 22px 22px; 
+   height: 22px;
+   width: 22px;
+}
+
+
+/*
+ * Large
+ */
+.tall.large {
+    width: 70px;
+}
+
+.tall.large .count {
+    height: 40px;
+    margin-bottom: 4px;
+}
+
+.tall.large .loader:before {
+    top: 10px;
+}
+
+.tall.large .count .hold {
+    padding-top: 10px
+}
+ 
+.tall.large .count .hold ins {
+    font-size: 19px;
+}
+ 
+.large .button ins {
+    height: 20px;
+    font-size: 15px;
+    padding-left: 5px;
+    line-height: 20px;
+}
+
+/*
+ * loader
+ */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#counter{
+  min-width: 10px;/* so its fits the loader */
+  display: inline-block;
+  text-align: center;
+}
+
+.loader.loaded:before {
+    opacity: 0;
+}
+.loader:before {
+    opacity: 1;
+    content: '';
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAACQ1BMVEUAAAD///+AgICqVVWqqlWqqqqAgIBmZmZVVVWAVVVtSUltbUltbW1gYGBxVVVmTU1dRkZdXUZdXV1VVUBVVVViTk5bSUlbW0lVRERVVURmVURgUEBgUFBaSzxaS0tVR0djR0dRQ0NRUUNeUUNZTUBZTU1VST1VSUlRRjpRRkZdRkZdUUZOQ0NZQ0NZTkNZTk5VQEBVSkBgSkpSRz1SR0dcR0dORTtYRUVYTkVeTExSSUBbSUBYRj5YRkZVRERVTURaSkJaSkpQSEBYSEhVRj5VRkZTRERTS0RaS0RXSUJVR0BVR0dTRT5aTEVRQ0NXQ0NVSEFVSEhTRkBTRkZXRD5XS0RVSUNTR0FZR0FRRkBXS0BXS0ZVRD5VSkRTSENZSENXR0FVRUBTST5TSURXR0JVRkFTSkVYSkVSSD9XSENVR0JTRkFXSUBXSURVSENURkJSRUFWRUFVSEBUR0NYR0NWRkJVRUFVSUFUSEBSR0NURUFUSEFTR0BWR0RVRkNURUJUSUJTSEFWSERVR0BVR0NURkJTRUFWSEFVR0FURkBTRkJWRkJVRUFUR0FUR0RTRkBWRkNVRUJVSEJTR0FSRkBURUJTR0FVRkBURkBTRUJTSEJVR0FURkBTRUBTSENUR0FTRkBSRUJVRUBUR0JTRkFVRkBURUBURUJTR0JVRkFURUBTRUBTR0JVRkJURkFTR0JVR0BTRkFUR0BUR0JTRkFTRUFURkBTRkFURUBTRkBURkFURUFWR0FURkBURUFTR0FURkLGKTgcAAAAwXRSTlMAAQIDAwMEBQYGBwcHCAkKCwsLDAwNDg4PDw8QEBEREhITExMUFBUVFhYWFhcXFxcYGBgZGRkaGhobHBwdHR4eHx8gICEhIiIiIyQkJSUmJicnKCgpKSorKywsLC0tLi4vMDExMjM0NDU1Njc4ODk6Ozs8PT0+Pz9AQUNDRERFRkZHR0hISUpKS0xNTU5PT1BQUVFTVFVWV1hZWVpbXFxeX2BgYWJjZGRlZmdoaGlqbGxucHBxcnR1d3h5enp8fX6AqSHypAAAAgVJREFUGBmFwYdbEmEAB+DfnXp40HElK4WOihUWBCFF04wGpBXaXjSkAallabaxvWyQDZs2aKcNbc8/LfFRHtG7+94XuXTVDUcv3+m4fqp5owGSuHWtt2533L3/4GHn46fP0u27eIhRrG5rv3m1btFUg4It9le2PHrxKr2TxQiBM9dS9ZNpZOUFkm/ePgkjFxW51NZkwTDTbnR1JygMwcQuXAxBxNbuD2cVyKJqzyUdEFX++uN5CoMqTx/XQYLl3acGDHAnT9ogqaKndxn6MQdPzIeM2OcuFhmhY3HIuvelEX1ULUdMkDXza08RgNDhzSBIfWsCED8kgKDi+0tA3dxIgyC/94cZsw9Ug+jKz3pE9rtBtOV3Chv2mUAU/NOJ2r1qENn+vkeijgHRqH+/EN/DgIhNP0c0oQYRW7UCNbv1IFJ6JiC0wwYifroR7lgQRIJPA257lAYB5fUVAiu36UCg8jkAlEWDIBB8WgCKtZvGQBbr9Ragj3v9Ysia6NUhIz+yxgIZoz0OGv0Mq2qKIEnp8nAY4IhUqSBBUerSYRAVWB7mIUpZ6iqhkEX7l4ZLIIJ3TjHRGIIyL1no5zBMoeB0aink0pYvmGfjKGRR7NhJTpsKI9DGuXNmlY3jlQxNMyynt9rtVi0NMQXF7hk+r8tuzbDbzZo8SGI0JmG81SIY9TyDHP8BuCBoV1lpYtkAAAAASUVORK5CYII=');
+
+    background-repeat: no-repeat;
+    background-size: contain; /* not supported in ie8 */
+    animation-name: rotate;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transition: opacity .1s ease;
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    margin-left: -10px;
+}
+
+.wide .loader:before {
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    top: 1px;
+}
+
+.share a {
+	display: block;	
+}
+
+.build {
+    display: none;
+}
+
+</style>
+<style></style></head>
+<body>
+<div class="share wide vote " id="share">
+  <a href="https://www.producthunt.com/posts/chmod-command-calculator?utm_campaign=producthunt-api&amp;utm_medium=api&amp;utm_source=Application%3A+Hunterboard+%234+%28ID%3A+2978%29&amp;ref=votebutton" target="_blank" class="count lnk"><div class="hold"><ins id="counter" class="loaded" title="Chmod Command Calculator - Easiest way to generate file or directory permissions">145</ins></div></a>
+  <a href="https://www.producthunt.com/posts/chmod-command-calculator?utm_campaign=producthunt-api&amp;utm_medium=api&amp;utm_source=Application%3A+Hunterboard+%234+%28ID%3A+2978%29&amp;ref=votebutton" target="_blank" class="button lnk"><ins id="title">Vote</ins></a>
+<script async="" src="./analytics.js.download"></script><script type="text/javascript" async="" src="./proxy.php"></script></div>
+<a href="https://yvoschaap.com/" target="_blank" class="build">Created by Yvo Schaap</a>
+<script>
+/* 
+ * Hey Product Hunt, add support of jsonp (callback) to your api, so I don't need an proxy :)
+ */
+(function(e, h, g) {
+    g = h.getElementById("share");
+    var k, f = {},
+        l = function(c) {
+            c.preventDefault();
+            window.open(c.currentTarget.href, "_blank", "width=" + (500 > (screen.width && screen.width) ? screen.width : "500") + ", height=" + (800 > (screen.height && screen.height) ? screen.height : "800"));
+            return !1
+        },
+        f = function() {
+            for (var c = {
+                    layout: "tall",
+                    href: !1,
+              		type: "vote",
+              		size: ""
+                }, a = (window.location.hash && 1 < window.location.hash.length ? window.location.hash.substring(1) : document.location.search.substring(1)).split("&"), b = 0; b < a.length; b++)
+                if (pos = a[b].indexOf("="), -1 != pos) {
+                    var d = a[b].substring(0, pos),
+                        f = a[b].substring(pos + 1);
+                    c[d] = f
+                }
+            return c
+        }();
+    if ("tall" == f.layout || "wide" == f.layout) g.className = "share " + f.layout + " " + f.type + " " + f.size;
+    z = h.getElementById("title");
+    z.innerHTML = (f.type == "review" ? "Review" : "Vote");
+    f.href && (k = ("https:" == document.location.protocol ? "https://" : "http://") + "yvoschaap.com/producthunt/proxy.php?url=" + encodeURIComponent(decodeURIComponent(f.href)) + "&per_page=1&key=fd82cedc678984ad777df6839282a8e1a34d3f8d&callback=phShare", e.phShare = function(c) {
+        var a = h.getElementById("counter"),
+            b;
+        a.className = "loaded";
+        if (c && c.posts && 1 == c.posts.length) {
+            c = c.posts[0];
+            b = c.votes_count;
+            a.innerHTML = (f.type == 'vote' ? b : '&nbsp;');
+            a.setAttribute("title", c.name +
+                " - " + c.tagline);
+            a = document.createElement("a");
+            a.href = c.discussion_url;
+            a.search = 0 < a.search.length ? a.search + "&ref=votebutton" : "?ref=votebutton";
+            b = document.querySelectorAll(".share .lnk");
+            for (var d = 0, e = b.length; d < e; d++) b[d].href = a.href ? a.href : c.discussion_url, b[d].addEventListener("click", l, !0)
+        } else
+            for (a.innerHTML = "+", a.setAttribute("title", "Submit to Product Hunt"), b = document.querySelectorAll(".share .lnk"), d = 0, e = b.length; d < e; d++) b[d].href = "https://www.producthunt.com/posts/new?ref=votebutton&post[url]=" +
+                encodeURIComponent(decodeURIComponent(f.href)), b[d].addEventListener("click", l, !0)
+    }, e = document.createElement("script"), e.type = "text/javascript", e.async = !0, e.src = k, g.appendChild(e));
+})(window, document);
+</script>
+<!-- ga -->
+<script>
+(function(w,d) {
+  w['ga'] = w['ga'] || function(){ (w['ga'].q = w['ga'].q || []).push(arguments) };
+  w['ga'].l = 1 * new Date();
+
+  var ga = d.createElement('script'); ga.async = true;
+  ga.src = '//www.google-analytics.com/analytics.js';
+  var s = d.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})(window, document);
+
+ga('create', 'UA-325506-4');
+ga('send', 'pageview');
+</script>
+
+</body></html>
