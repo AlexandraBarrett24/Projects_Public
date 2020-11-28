@@ -1,0 +1,70 @@
+\hypertarget{classcsci3081_1_1Scheduler}{}\section{csci3081\+:\+:Scheduler Class Reference}
+\label{classcsci3081_1_1Scheduler}\index{csci3081\+::\+Scheduler@{csci3081\+::\+Scheduler}}
+
+
+A class that stores and handles the entities in the \hyperlink{classcsci3081_1_1DroneSimulation}{Drone\+Simulation} system.  
+
+
+
+
+{\ttfamily \#include $<$scheduler.\+h$>$}
+
+
+
+Collaboration diagram for csci3081\+:\+:Scheduler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=191pt]{classcsci3081_1_1Scheduler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classcsci3081_1_1Scheduler_a06bd24b65f0c52349475eb6ccc661322}{Schedule\+Delivery} (entity\+\_\+project\+::\+Package $\ast$package, entity\+\_\+project\+::\+Customer $\ast$dest, const picojson\+::object \&details)
+\begin{DoxyCompactList}\small\item\em Schedules a package delivery to a customer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_ab3630723be8af0303181d92079772ef1}\label{classcsci3081_1_1Scheduler_ab3630723be8af0303181d92079772ef1}} 
+void \hyperlink{classcsci3081_1_1Scheduler_ab3630723be8af0303181d92079772ef1}{Add\+Entity} (entity\+\_\+project\+::\+Entity $\ast$entity)
+\begin{DoxyCompactList}\small\item\em Add an already created entity into the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_a50d8d379859c930d059ef488054b6aac}\label{classcsci3081_1_1Scheduler_a50d8d379859c930d059ef488054b6aac}} 
+void \hyperlink{classcsci3081_1_1Scheduler_a50d8d379859c930d059ef488054b6aac}{Remove\+Entity} (entity\+\_\+project\+::\+Entity $\ast$entity)
+\begin{DoxyCompactList}\small\item\em Removes an entity from the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_aee6e6c093f5df70acbd8dac37f874876}\label{classcsci3081_1_1Scheduler_aee6e6c093f5df70acbd8dac37f874876}} 
+void \hyperlink{classcsci3081_1_1Scheduler_aee6e6c093f5df70acbd8dac37f874876}{Add\+Package} (\hyperlink{classcsci3081_1_1Package}{Package} p)
+\begin{DoxyCompactList}\small\item\em Adds a package into the list of Packages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_a06957515a2861f5d8213f15466c231a9}\label{classcsci3081_1_1Scheduler_a06957515a2861f5d8213f15466c231a9}} 
+void \hyperlink{classcsci3081_1_1Scheduler_a06957515a2861f5d8213f15466c231a9}{Add\+Drone} (\hyperlink{classcsci3081_1_1Drone}{Drone} d)
+\begin{DoxyCompactList}\small\item\em Adds a drone into the list of Drones. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_a6b25bd5bbd478da964960c9175d90032}\label{classcsci3081_1_1Scheduler_a6b25bd5bbd478da964960c9175d90032}} 
+void \hyperlink{classcsci3081_1_1Scheduler_a6b25bd5bbd478da964960c9175d90032}{Add\+Customer} (\hyperlink{classcsci3081_1_1Customer}{Customer} c)
+\begin{DoxyCompactList}\small\item\em Adds a customer into the list of Customers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_a5e1dd1d2bad1d9be7b82a5830efd376f}\label{classcsci3081_1_1Scheduler_a5e1dd1d2bad1d9be7b82a5830efd376f}} 
+void \hyperlink{classcsci3081_1_1Scheduler_a5e1dd1d2bad1d9be7b82a5830efd376f}{Remove\+Package} (\hyperlink{classcsci3081_1_1Package}{Package} p)
+\begin{DoxyCompactList}\small\item\em Removes a package from the list of Packages. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_a0b13646a4c8758c4f6baf544a63c79e9}\label{classcsci3081_1_1Scheduler_a0b13646a4c8758c4f6baf544a63c79e9}} 
+void \hyperlink{classcsci3081_1_1Scheduler_a0b13646a4c8758c4f6baf544a63c79e9}{Remove\+Drone} (\hyperlink{classcsci3081_1_1Drone}{Drone} d)
+\begin{DoxyCompactList}\small\item\em Removes a drone from the list of Drones. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_ae7d80f81e69926dbc365a8efafe6dc5d}\label{classcsci3081_1_1Scheduler_ae7d80f81e69926dbc365a8efafe6dc5d}} 
+void \hyperlink{classcsci3081_1_1Scheduler_ae7d80f81e69926dbc365a8efafe6dc5d}{Remove\+Customer} (\hyperlink{classcsci3081_1_1Customer}{Customer} c)
+\begin{DoxyCompactList}\small\item\em Removes a customer from the list of Customers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class that stores and handles the entities in the \hyperlink{classcsci3081_1_1DroneSimulation}{Drone\+Simulation} system. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1Scheduler_a06bd24b65f0c52349475eb6ccc661322}\label{classcsci3081_1_1Scheduler_a06bd24b65f0c52349475eb6ccc661322}} 
+\index{csci3081\+::\+Scheduler@{csci3081\+::\+Scheduler}!Schedule\+Delivery@{Schedule\+Delivery}}
+\index{Schedule\+Delivery@{Schedule\+Delivery}!csci3081\+::\+Scheduler@{csci3081\+::\+Scheduler}}
+\subsubsection{\texorpdfstring{Schedule\+Delivery()}{ScheduleDelivery()}}
+{\footnotesize\ttfamily void csci3081\+::\+Scheduler\+::\+Schedule\+Delivery (\begin{DoxyParamCaption}\item[{entity\+\_\+project\+::\+Package $\ast$}]{package,  }\item[{entity\+\_\+project\+::\+Customer $\ast$}]{dest,  }\item[{const picojson\+::object \&}]{details }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Schedules a package delivery to a customer. 
+
+Checks each drone in the system and assigns the closest drone to pick up the package and deliver it to the customer. Takes into account the weight of the package and the current capacity of the drones as well, so a drone doesn\textquotesingle{}t get assigned to a package that is too heavy. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{scheduler_8h}{scheduler.\+h}\end{DoxyCompactItemize}

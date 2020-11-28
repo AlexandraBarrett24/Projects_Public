@@ -1,0 +1,57 @@
+\hypertarget{classcsci3081_1_1Package}{}\section{csci3081\+:\+:Package Class Reference}
+\label{classcsci3081_1_1Package}\index{csci3081\+::\+Package@{csci3081\+::\+Package}}
+
+
+Stores data about \hyperlink{classcsci3081_1_1Package}{Package} entities.  
+
+
+
+
+{\ttfamily \#include $<$package.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Package\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classcsci3081_1_1Package__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for csci3081\+:\+:Package\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classcsci3081_1_1Package__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_a3be008ddf9372479ce719c2e823e368e}\label{classcsci3081_1_1Package_a3be008ddf9372479ce719c2e823e368e}} 
+\hyperlink{classcsci3081_1_1Package_a3be008ddf9372479ce719c2e823e368e}{Package} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_ad4665f319d2ebf5cdf9de133f0f476b3}\label{classcsci3081_1_1Package_ad4665f319d2ebf5cdf9de133f0f476b3}} 
+\hyperlink{classcsci3081_1_1Package_ad4665f319d2ebf5cdf9de133f0f476b3}{Package} (const picojson\+::object \&val)
+\begin{DoxyCompactList}\small\item\em Generates a package from a picojson\+::object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_a34cb292d5b89e61724b1f8f885cc71cc}\label{classcsci3081_1_1Package_a34cb292d5b89e61724b1f8f885cc71cc}} 
+double \hyperlink{classcsci3081_1_1Package_a34cb292d5b89e61724b1f8f885cc71cc}{Get\+Weight} ()
+\begin{DoxyCompactList}\small\item\em Returns weight of package. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_a4f9452af878f2f119ab98b6a460afce2}\label{classcsci3081_1_1Package_a4f9452af878f2f119ab98b6a460afce2}} 
+\hyperlink{classcsci3081_1_1Customer}{Customer} $\ast$ \hyperlink{classcsci3081_1_1Package_a4f9452af878f2f119ab98b6a460afce2}{Get\+Customer} ()
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the package\textquotesingle{}s customer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Package_a0d19deea6561850c95c6c4837b1a6b43}\label{classcsci3081_1_1Package_a0d19deea6561850c95c6c4837b1a6b43}} 
+void \hyperlink{classcsci3081_1_1Package_a0d19deea6561850c95c6c4837b1a6b43}{Notify\+Observer} (std\+::string status)
+\begin{DoxyCompactList}\small\item\em Notifies the observer to update the package\textquotesingle{}s status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Stores data about \hyperlink{classcsci3081_1_1Package}{Package} entities. 
+
+Packages each have a customer, a weight, and includes a \hyperlink{classcsci3081_1_1PackageObserver}{Package\+Observer}. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/package.\+h\end{DoxyCompactItemize}

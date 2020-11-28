@@ -1,0 +1,79 @@
+\hypertarget{classcsci3081_1_1CustomerObserver}{}\section{csci3081\+:\+:Customer\+Observer Class Reference}
+\label{classcsci3081_1_1CustomerObserver}\index{csci3081\+::\+Customer\+Observer@{csci3081\+::\+Customer\+Observer}}
+
+
+implements \hyperlink{classcsci3081_1_1Customer}{Customer} observer  
+
+
+
+
+{\ttfamily \#include $<$customer\+\_\+observer.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Customer\+Observer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcsci3081_1_1CustomerObserver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for csci3081\+:\+:Customer\+Observer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcsci3081_1_1CustomerObserver__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1CustomerObserver_aef8825b1f43910c5080691d57ac2979b}\label{classcsci3081_1_1CustomerObserver_aef8825b1f43910c5080691d57ac2979b}} 
+\hyperlink{classcsci3081_1_1CustomerObserver_aef8825b1f43910c5080691d57ac2979b}{Customer\+Observer} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classcsci3081_1_1CustomerObserver_aa6c907db0939e504ffabfaa0a619702e}{Customer\+Observer} (entity\+\_\+project\+::\+Entity \&entity)
+\begin{DoxyCompactList}\small\item\em Creates new \hyperlink{classcsci3081_1_1CustomerObserver}{Customer\+Observer} and connects it to a \hyperlink{classcsci3081_1_1Customer}{Customer} Entity. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1CustomerObserver_a2134ac33a6fd38951bbd979e6fd5a853}{Update} (std\+::string status)
+\begin{DoxyCompactList}\small\item\em Alter behavior/status of drone in response to status change. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+implements \hyperlink{classcsci3081_1_1Customer}{Customer} observer 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1CustomerObserver_aa6c907db0939e504ffabfaa0a619702e}\label{classcsci3081_1_1CustomerObserver_aa6c907db0939e504ffabfaa0a619702e}} 
+\index{csci3081\+::\+Customer\+Observer@{csci3081\+::\+Customer\+Observer}!Customer\+Observer@{Customer\+Observer}}
+\index{Customer\+Observer@{Customer\+Observer}!csci3081\+::\+Customer\+Observer@{csci3081\+::\+Customer\+Observer}}
+\subsubsection{\texorpdfstring{Customer\+Observer()}{CustomerObserver()}}
+{\footnotesize\ttfamily csci3081\+::\+Customer\+Observer\+::\+Customer\+Observer (\begin{DoxyParamCaption}\item[{entity\+\_\+project\+::\+Entity \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates new \hyperlink{classcsci3081_1_1CustomerObserver}{Customer\+Observer} and connects it to a \hyperlink{classcsci3081_1_1Customer}{Customer} Entity. 
+
+Instantiates observer with status \char`\"{}\+Waiting\char`\"{} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1CustomerObserver_a2134ac33a6fd38951bbd979e6fd5a853}\label{classcsci3081_1_1CustomerObserver_a2134ac33a6fd38951bbd979e6fd5a853}} 
+\index{csci3081\+::\+Customer\+Observer@{csci3081\+::\+Customer\+Observer}!Update@{Update}}
+\index{Update@{Update}!csci3081\+::\+Customer\+Observer@{csci3081\+::\+Customer\+Observer}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void csci3081\+::\+Customer\+Observer\+::\+Update (\begin{DoxyParamCaption}\item[{std\+::string}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Alter behavior/status of drone in response to status change. 
+
+Called by observer\textquotesingle{}s On\+Event method. 
+
+Implements \hyperlink{classcsci3081_1_1EntityObserver_ad3188f03b6e68961ffcc415526795867}{csci3081\+::\+Entity\+Observer}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{customer__observer_8h}{customer\+\_\+observer.\+h}\end{DoxyCompactItemize}

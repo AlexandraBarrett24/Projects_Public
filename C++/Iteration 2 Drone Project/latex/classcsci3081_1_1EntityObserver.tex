@@ -1,0 +1,80 @@
+\hypertarget{classcsci3081_1_1EntityObserver}{}\section{csci3081\+:\+:Entity\+Observer Class Reference}
+\label{classcsci3081_1_1EntityObserver}\index{csci3081\+::\+Entity\+Observer@{csci3081\+::\+Entity\+Observer}}
+
+
+An abstract class from which specialized entity observers inherit from.  
+
+
+
+
+{\ttfamily \#include $<$entity\+\_\+observer.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Entity\+Observer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcsci3081_1_1EntityObserver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for csci3081\+:\+:Entity\+Observer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcsci3081_1_1EntityObserver__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1EntityObserver_a7585beb5fe2288721f2e6d6a801cde69}\label{classcsci3081_1_1EntityObserver_a7585beb5fe2288721f2e6d6a801cde69}} 
+std\+::string \hyperlink{classcsci3081_1_1EntityObserver_a7585beb5fe2288721f2e6d6a801cde69}{Get\+Status} ()
+\begin{DoxyCompactList}\small\item\em Return current status of entity. \end{DoxyCompactList}\item 
+int \hyperlink{classcsci3081_1_1EntityObserver_a5f972497c62a6eb6581e32fa21afbc2f}{On\+Event} (const picojson\+::value \&event, const Entity \&entity)
+\begin{DoxyCompactList}\small\item\em Updates the entity\textquotesingle{}s status. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classcsci3081_1_1EntityObserver_ad3188f03b6e68961ffcc415526795867}{Update} (std\+::string status)=0
+\begin{DoxyCompactList}\small\item\em make observer/entity react to update \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An abstract class from which specialized entity observers inherit from. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1EntityObserver_a5f972497c62a6eb6581e32fa21afbc2f}\label{classcsci3081_1_1EntityObserver_a5f972497c62a6eb6581e32fa21afbc2f}} 
+\index{csci3081\+::\+Entity\+Observer@{csci3081\+::\+Entity\+Observer}!On\+Event@{On\+Event}}
+\index{On\+Event@{On\+Event}!csci3081\+::\+Entity\+Observer@{csci3081\+::\+Entity\+Observer}}
+\subsubsection{\texorpdfstring{On\+Event()}{OnEvent()}}
+{\footnotesize\ttfamily int csci3081\+::\+Entity\+Observer\+::\+On\+Event (\begin{DoxyParamCaption}\item[{const picojson\+::value \&}]{event,  }\item[{const Entity \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the entity\textquotesingle{}s status. 
+
+Converts picojson object into string, to be stored in status\+\_\+. Then calls Update method to do something to respond to the new status.
+
+\begin{DoxyReturn}{Returns}
+1 if status successfully changed, 0 if not. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcsci3081_1_1EntityObserver_ad3188f03b6e68961ffcc415526795867}\label{classcsci3081_1_1EntityObserver_ad3188f03b6e68961ffcc415526795867}} 
+\index{csci3081\+::\+Entity\+Observer@{csci3081\+::\+Entity\+Observer}!Update@{Update}}
+\index{Update@{Update}!csci3081\+::\+Entity\+Observer@{csci3081\+::\+Entity\+Observer}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily virtual void csci3081\+::\+Entity\+Observer\+::\+Update (\begin{DoxyParamCaption}\item[{std\+::string}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+make observer/entity react to update 
+
+Specific implementation depends on entity type and status, to be implemented in specialized observer classes. 
+
+Implemented in \hyperlink{classcsci3081_1_1DroneObserver_a54e1312bb116755bfa2b9a07c04632f7}{csci3081\+::\+Drone\+Observer}, \hyperlink{classcsci3081_1_1PackageObserver_a8ebc5b23b82ee2a2d0ec13872f24fb6c}{csci3081\+::\+Package\+Observer}, and \hyperlink{classcsci3081_1_1CustomerObserver_a2134ac33a6fd38951bbd979e6fd5a853}{csci3081\+::\+Customer\+Observer}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{entity__observer_8h}{entity\+\_\+observer.\+h}\end{DoxyCompactItemize}

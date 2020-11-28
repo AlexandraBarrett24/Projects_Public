@@ -1,0 +1,77 @@
+\hypertarget{classcsci3081_1_1DroneObserver}{}\section{csci3081\+:\+:Drone\+Observer Class Reference}
+\label{classcsci3081_1_1DroneObserver}\index{csci3081\+::\+Drone\+Observer@{csci3081\+::\+Drone\+Observer}}
+
+
+implements \hyperlink{classcsci3081_1_1Drone}{Drone} observer  
+
+
+
+
+{\ttfamily \#include $<$drone\+\_\+observer.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Drone\+Observer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcsci3081_1_1DroneObserver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for csci3081\+:\+:Drone\+Observer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcsci3081_1_1DroneObserver__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1DroneObserver_a44ea52d14f083b4b1d820bc7adf03c7a}\label{classcsci3081_1_1DroneObserver_a44ea52d14f083b4b1d820bc7adf03c7a}} 
+\hyperlink{classcsci3081_1_1DroneObserver_a44ea52d14f083b4b1d820bc7adf03c7a}{Drone\+Observer} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classcsci3081_1_1DroneObserver_ad065c567a9ae5d96fd69c70b45a39426}{Drone\+Observer} (entity\+\_\+project\+::\+Entity \&entity)
+\begin{DoxyCompactList}\small\item\em Creates new \hyperlink{classcsci3081_1_1DroneObserver}{Drone\+Observer} and connects it to a \hyperlink{classcsci3081_1_1Drone}{Drone} Entity. \end{DoxyCompactList}\item 
+void \hyperlink{classcsci3081_1_1DroneObserver_a54e1312bb116755bfa2b9a07c04632f7}{Update} (std\+::string status)
+\begin{DoxyCompactList}\small\item\em Alter behavior/status of drone in response to status change. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+implements \hyperlink{classcsci3081_1_1Drone}{Drone} observer 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1DroneObserver_ad065c567a9ae5d96fd69c70b45a39426}\label{classcsci3081_1_1DroneObserver_ad065c567a9ae5d96fd69c70b45a39426}} 
+\index{csci3081\+::\+Drone\+Observer@{csci3081\+::\+Drone\+Observer}!Drone\+Observer@{Drone\+Observer}}
+\index{Drone\+Observer@{Drone\+Observer}!csci3081\+::\+Drone\+Observer@{csci3081\+::\+Drone\+Observer}}
+\subsubsection{\texorpdfstring{Drone\+Observer()}{DroneObserver()}}
+{\footnotesize\ttfamily csci3081\+::\+Drone\+Observer\+::\+Drone\+Observer (\begin{DoxyParamCaption}\item[{entity\+\_\+project\+::\+Entity \&}]{entity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates new \hyperlink{classcsci3081_1_1DroneObserver}{Drone\+Observer} and connects it to a \hyperlink{classcsci3081_1_1Drone}{Drone} Entity. 
+
+Instantiates observer with status \char`\"{}\+Waiting\char`\"{} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1DroneObserver_a54e1312bb116755bfa2b9a07c04632f7}\label{classcsci3081_1_1DroneObserver_a54e1312bb116755bfa2b9a07c04632f7}} 
+\index{csci3081\+::\+Drone\+Observer@{csci3081\+::\+Drone\+Observer}!Update@{Update}}
+\index{Update@{Update}!csci3081\+::\+Drone\+Observer@{csci3081\+::\+Drone\+Observer}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily void csci3081\+::\+Drone\+Observer\+::\+Update (\begin{DoxyParamCaption}\item[{std\+::string}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Alter behavior/status of drone in response to status change. 
+
+Called by observer\textquotesingle{}s On\+Event method. 
+
+Implements \hyperlink{classcsci3081_1_1EntityObserver_ad3188f03b6e68961ffcc415526795867}{csci3081\+::\+Entity\+Observer}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{drone__observer_8h}{drone\+\_\+observer.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\hypertarget{classcsci3081_1_1Drone}{}\section{csci3081\+:\+:Drone Class Reference}
+\label{classcsci3081_1_1Drone}\index{csci3081\+::\+Drone@{csci3081\+::\+Drone}}
+
+
+Stores data about \hyperlink{classcsci3081_1_1Drone}{Drone} entities.  
+
+
+
+
+{\ttfamily \#include $<$drone.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Drone\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classcsci3081_1_1Drone__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for csci3081\+:\+:Drone\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classcsci3081_1_1Drone__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1Drone_a7f34f6af6b978ce99ace8b15d13159c8}\label{classcsci3081_1_1Drone_a7f34f6af6b978ce99ace8b15d13159c8}} 
+\hyperlink{classcsci3081_1_1Drone_a7f34f6af6b978ce99ace8b15d13159c8}{Drone} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Drone_ae6875af07d7f09ce59e2e2a62e5bd7d8}\label{classcsci3081_1_1Drone_ae6875af07d7f09ce59e2e2a62e5bd7d8}} 
+\hyperlink{classcsci3081_1_1Drone_ae6875af07d7f09ce59e2e2a62e5bd7d8}{Drone} (const picojson\+::object \&val)
+\begin{DoxyCompactList}\small\item\em Generates a drone from a picojson\+::object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Drone_a888170a040c9d1138b3e57f7672efa7c}\label{classcsci3081_1_1Drone_a888170a040c9d1138b3e57f7672efa7c}} 
+float $\ast$ \hyperlink{classcsci3081_1_1Drone_a888170a040c9d1138b3e57f7672efa7c}{Get\+Destination} ()
+\begin{DoxyCompactList}\small\item\em Return the drone\textquotesingle{}s current destinationi. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Drone_acf2725b427d9e0341107096a8b7ffaf1}\label{classcsci3081_1_1Drone_acf2725b427d9e0341107096a8b7ffaf1}} 
+void \hyperlink{classcsci3081_1_1Drone_acf2725b427d9e0341107096a8b7ffaf1}{Set\+Destination} (float $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Sets the drone\textquotesingle{}s destination. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Drone_a6373d2209bd49b083cffa3c2d2af9bce}\label{classcsci3081_1_1Drone_a6373d2209bd49b083cffa3c2d2af9bce}} 
+int \hyperlink{classcsci3081_1_1Drone_a6373d2209bd49b083cffa3c2d2af9bce}{Add\+Package} (\hyperlink{classcsci3081_1_1Package}{Package} p)
+\begin{DoxyCompactList}\small\item\em Adds package to package\+List. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Drone_a2b3d369000db426ad56fe5866b970544}\label{classcsci3081_1_1Drone_a2b3d369000db426ad56fe5866b970544}} 
+void \hyperlink{classcsci3081_1_1Drone_a2b3d369000db426ad56fe5866b970544}{Remove\+Package} (\hyperlink{classcsci3081_1_1Package}{Package} p)
+\begin{DoxyCompactList}\small\item\em Removes the specified package from package\+List, if possible. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1Drone_a9ce811247637835a1cf8928daf95ce78}\label{classcsci3081_1_1Drone_a9ce811247637835a1cf8928daf95ce78}} 
+void \hyperlink{classcsci3081_1_1Drone_a9ce811247637835a1cf8928daf95ce78}{Notify\+Observer} (std\+::string status)
+\begin{DoxyCompactList}\small\item\em Notifies the observer to update the drone\textquotesingle{}s status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Stores data about \hyperlink{classcsci3081_1_1Drone}{Drone} entities. 
+
+Drones each have a \hyperlink{classcsci3081_1_1Package}{Package} vector to store packages and a maximum capacity (weight limit). Also includes its own observer which handles the current status. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{drone_8h}{drone.\+h}\end{DoxyCompactItemize}

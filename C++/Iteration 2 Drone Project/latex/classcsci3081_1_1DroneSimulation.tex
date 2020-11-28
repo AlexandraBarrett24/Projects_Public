@@ -1,0 +1,81 @@
+\hypertarget{classcsci3081_1_1DroneSimulation}{}\section{csci3081\+:\+:Drone\+Simulation Class Reference}
+\label{classcsci3081_1_1DroneSimulation}\index{csci3081\+::\+Drone\+Simulation@{csci3081\+::\+Drone\+Simulation}}
+
+
+A facade class that implements the \hyperlink{classcsci3081_1_1Drone}{Drone} Delivery System.  
+
+
+
+
+{\ttfamily \#include $<$drone\+\_\+simulation.\+h$>$}
+
+
+
+Inheritance diagram for csci3081\+:\+:Drone\+Simulation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classcsci3081_1_1DroneSimulation__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for csci3081\+:\+:Drone\+Simulation\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classcsci3081_1_1DroneSimulation__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classcsci3081_1_1DroneSimulation_ab920d19a82bc4bb42722bffa3a6d0e6a}\label{classcsci3081_1_1DroneSimulation_ab920d19a82bc4bb42722bffa3a6d0e6a}} 
+const std\+::string \& \hyperlink{classcsci3081_1_1DroneSimulation_ab920d19a82bc4bb42722bffa3a6d0e6a}{Get\+Team\+Name} () const
+\begin{DoxyCompactList}\small\item\em Return name of the project team. \end{DoxyCompactList}\item 
+entity\+\_\+project\+::\+Entity $\ast$ \hyperlink{classcsci3081_1_1DroneSimulation_af969b43abab98c458a50cad9f99a0440}{Create\+Entity} (const picojson\+::object \&val)
+\begin{DoxyCompactList}\small\item\em Create an entity of type specified by J\+S\+ON object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1DroneSimulation_a197a3495b53ffd8041a94000eb799ef7}\label{classcsci3081_1_1DroneSimulation_a197a3495b53ffd8041a94000eb799ef7}} 
+void \hyperlink{classcsci3081_1_1DroneSimulation_a197a3495b53ffd8041a94000eb799ef7}{Add\+Entity} (entity\+\_\+project\+::\+Entity $\ast$entity)
+\begin{DoxyCompactList}\small\item\em Add an already created entity into the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1DroneSimulation_a40816c8cef31df37015b54cc3f5015c3}\label{classcsci3081_1_1DroneSimulation_a40816c8cef31df37015b54cc3f5015c3}} 
+void \hyperlink{classcsci3081_1_1DroneSimulation_a40816c8cef31df37015b54cc3f5015c3}{Schedule\+Delivery} (entity\+\_\+project\+::\+Package $\ast$package, entity\+\_\+project\+::\+Customer $\ast$dest, const picojson\+::object \&details)
+\begin{DoxyCompactList}\small\item\em Schedule a drone delivery for a package to a customer. Handled by \hyperlink{classcsci3081_1_1Scheduler}{Scheduler} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1DroneSimulation_a4e82dd6f5f354564e06b59d82c2056f8}\label{classcsci3081_1_1DroneSimulation_a4e82dd6f5f354564e06b59d82c2056f8}} 
+void \hyperlink{classcsci3081_1_1DroneSimulation_a4e82dd6f5f354564e06b59d82c2056f8}{Add\+Observer} (entity\+\_\+project\+::\+Entity $\ast$entity, entity\+\_\+project\+::\+Entity\+Observer $\ast$observer)
+\begin{DoxyCompactList}\small\item\em Add an observer to a specific entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1DroneSimulation_ab796fda32c7fcd8d74e9971baf5cd608}\label{classcsci3081_1_1DroneSimulation_ab796fda32c7fcd8d74e9971baf5cd608}} 
+void \hyperlink{classcsci3081_1_1DroneSimulation_ab796fda32c7fcd8d74e9971baf5cd608}{Remove\+Observer} (entity\+\_\+project\+::\+Entity $\ast$entity, entity\+\_\+project\+::\+Entity\+Observer $\ast$observer)
+\begin{DoxyCompactList}\small\item\em Remove an observer from a specific entity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1DroneSimulation_aa9de1fa9d2090000445a093bea37ded3}\label{classcsci3081_1_1DroneSimulation_aa9de1fa9d2090000445a093bea37ded3}} 
+const std\+::vector$<$ entity\+\_\+project\+::\+Entity $\ast$ $>$ \& \hyperlink{classcsci3081_1_1DroneSimulation_aa9de1fa9d2090000445a093bea37ded3}{Get\+Entities} () const
+\begin{DoxyCompactList}\small\item\em Return all of the entities added into the system. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classcsci3081_1_1DroneSimulation_a17933be5048c3c2cfbcee77366bf87b9}\label{classcsci3081_1_1DroneSimulation_a17933be5048c3c2cfbcee77366bf87b9}} 
+void \hyperlink{classcsci3081_1_1DroneSimulation_a17933be5048c3c2cfbcee77366bf87b9}{Update} (float dt)
+\begin{DoxyCompactList}\small\item\em Updates the drone system time by dt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A facade class that implements the \hyperlink{classcsci3081_1_1Drone}{Drone} Delivery System. 
+
+Inherits from the entity\+\_\+project\+::\+Drone\+Delivery\+System. Currently does not add any new methods or attributes, but merely implements the functions described in the entity\+\_\+project\+::\+Drone\+Delivery\+System superclass. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcsci3081_1_1DroneSimulation_af969b43abab98c458a50cad9f99a0440}\label{classcsci3081_1_1DroneSimulation_af969b43abab98c458a50cad9f99a0440}} 
+\index{csci3081\+::\+Drone\+Simulation@{csci3081\+::\+Drone\+Simulation}!Create\+Entity@{Create\+Entity}}
+\index{Create\+Entity@{Create\+Entity}!csci3081\+::\+Drone\+Simulation@{csci3081\+::\+Drone\+Simulation}}
+\subsubsection{\texorpdfstring{Create\+Entity()}{CreateEntity()}}
+{\footnotesize\ttfamily entity\+\_\+project\+::\+Entity$\ast$ csci3081\+::\+Drone\+Simulation\+::\+Create\+Entity (\begin{DoxyParamCaption}\item[{const picojson\+::object \&}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Create an entity of type specified by J\+S\+ON object. 
+
+\begin{DoxyReturn}{Returns}
+the created entity object 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{drone__simulation_8h}{drone\+\_\+simulation.\+h}\end{DoxyCompactItemize}
